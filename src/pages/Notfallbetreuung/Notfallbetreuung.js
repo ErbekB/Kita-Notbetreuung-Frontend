@@ -1,5 +1,5 @@
 import React from 'react';
-import './Notfallbetreuung.css.css';
+import './Notfallbetreuung.css';
 
 function Notfallbetreuung() {
     return (
