@@ -1,10 +1,12 @@
 import React from 'react';
 
 function Header() {
+
     return (
         <div>
             <header>
                 <h2>Kitaorganisation</h2>
+                <h3>Gruppe</h3>
             </header>
             <div>
                 <div className="navButtons">
