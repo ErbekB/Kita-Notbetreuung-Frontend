@@ -3,7 +3,7 @@ import React from 'react';
 function Footer(props) {
     return (
         <div>
-            <p>"Effizient, Effectiv, Essentiell - Kita-Notbetreuung"</p>
+            <p>"Effizient, Effektiv, Essentiell - Kita-Notbetreuung"</p>
         </div>
     );
 }

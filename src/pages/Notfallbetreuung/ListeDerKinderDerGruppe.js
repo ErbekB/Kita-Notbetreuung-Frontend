@@ -29,7 +29,7 @@ function ListeDerKinderDerGruppe() {
             );
             setData(updatedData);
         } catch (error) {
-            console.error('Error toggling Notbetreuung:', error);
+            console.error('Error', error);
         }
     };
     return (
