@@ -1,5 +1,5 @@
-import React from 'react';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom';
 import './App.css';
 
 import Home from './pages/Home/Home';
@@ -10,20 +10,22 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
 function App() {
-  return (
-      <div className="App">
-          <Header/>
-        <Router>
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/Notfallbetreuung" element={<Notfallbetreuung/>} />
-            <Route path="/admin" element={<Admin/>} />
-            <Route path="/login" element={<Login/>} />
-        </Routes>
-        </Router>
-          <Footer/>
-      </div>
-  );
+    const [istEingeloggt, setIstEingeloggt] = useState(false);
+
+    return (
+        <div className="App">
+            {istEingeloggt && <Header/>}
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Home/>}/>
+                    <Route path="/Notfallbetreuung" element={<Notfallbetreuung/>}/>
+                    <Route path="/admin" element={<Admin/>}/>
+                    <Route path="/login" element={<Login/>}/>
+                </Routes>
+            </Router>
+            {istEingeloggt && <Footer/>}
+        </div>
+    );
 }
 
 export default App;
