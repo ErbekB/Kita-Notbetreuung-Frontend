@@ -4,7 +4,7 @@ import async from "async";
 
 function ListeDerKinderDerGruppe() {
     const [data, setData] = useState([])
-    const [teilnahme, setTeilnahme] = useState([])
+    const [counter, setCounter] = useState(0)
     /*const {user} = props*/
     useEffect(() => {
         const fetchData = async () => {
@@ -21,36 +21,68 @@ function ListeDerKinderDerGruppe() {
     }, []);
 
 
-    const handleClick = async (kindId) => {
+    function notbetreuungTeilnehmen (kindId) {
         try {
             axios.post(`http://localhost:8080/notfall/${kindId}`);
             const updatedData = data.map((kind) =>
-                kind.id === kindId ? {...kind, teilnahmeNotbetreuung: true} : kind
+                kind.id === kindId ? {...kind, teilnahmeNotbetreuung: true, counter : kind.counter +1} : kind
             );
+            setData(updatedData);
+            console.log(data)
+            } catch (error) {
+            console.error('Error', error);
+        }
+    };
+
+    function nichtTeilnehmen(kindId) {
+        try {
+            axios.post(`http://localhost:8080/notfall/aendern/${kindId}`);
+            const updatedData = data.map((kind) =>
+                kind.id === kindId ? {...kind, teilnahmeNotbetreuung: false, counter: kind.counter - 1} : kind
+            );
+
             setData(updatedData);
         } catch (error) {
             console.error('Error', error);
         }
-    };
+    }
+
+
+    function teilnahmeAendern(kindId) {
+        alert("bist du sicher")
+        try {
+            axios.post(`http://localhost:8080/notfall/teilnahme/${kindId}`);
+            const temporalData = data.filter((kind) => kind.id !== kindId);
+            setData(temporalData);
+        } catch (error) {
+            console.error('Error', error);
+        }
+    }
+
     return (
         <div>
-            <div>{data.map((kind, index) => (
-                kind.teilnahmeNotbetreuung === true && <p key={index}>{kind.vorname}</p>
+            <div><h2>
+                an Notbetreuung teilnehmend:
+            </h2>{data.map((kind, index) => (
+                kind.teilnahmeNotbetreuung === true && <p key={index}>{kind.vorname} bisherige Teilnahmen{kind.counter}<button onClick={() => nichtTeilnehmen(kind.id)}>Teilnahme zurückziehen </button></p>
             ))}
             </div>
             <hr/>
-            <div>{data.map((kind, index) => (
-                    kind.teilnahmeNotbetreuung === false &&
-                    (<p key={index}> {kind.vorname}
-                            {(1 + 1) === kind.id && (
-                                < button onClick={() => handleClick(kind.id)}>Notbetreuung für Kind {kind.vorname} in
+            <div><h2>
+            Kinder der Gruppe
+            </h2>
+                {data.map((kind, index) => (
+                    kind.teilnahmeNotbetreuung === false && <p key={index}> {kind.vorname} bisherige Teilnahmen: {kind.counter}
+                            {(1 + 1) === kind.id &&
+                                <button onClick={() => notbetreuungTeilnehmen(kind.id)}>Notbetreuung für Kind {kind.vorname} in
                                     Anspruch
-                                    nehmen</button>)}
-                        </p>
-                    )
-                )
-            )
-            }
+                                    nehmen
+                                </button>}
+                        {(1 + 1) === kind.id &&
+                        <button onClick={() => teilnahmeAendern(kind.id)}>nicht teilnehmen</button>}
+                                </p>
+                                ))
+                }
             </div>
         </div>
     );
