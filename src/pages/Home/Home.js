@@ -5,6 +5,7 @@ import axios from "axios";
 
 function Home() {
     const [data, setData] = useState([]);
+    const [admin, setAdmin] = useState();
     const [notbetreuung, setNotbetreuung] = useState();
 
     useEffect(() => {
@@ -12,6 +13,7 @@ function Home() {
             await axios.get('http://localhost:8080/index/1')
                 .then(response => {
                     setData(response.data.kindList);
+                    setAdmin(response.data.admin);
                     setNotbetreuung(response.data.notbetreuung);
                 })
                 .catch(error => {
@@ -34,12 +36,12 @@ function Home() {
     return (
         <div className="Home">
             <h1>Startseite</h1>
-            <button className="navItem" onClick={toggleNotbetreuung}>Notbetreuung</button>
+            {admin ? <button className="navItem" onClick={toggleNotbetreuung}>Notbetreuung</button> : ""}
             <h2>Heute ist Notbetreuung: {notbetreuung ? "Ja" : "Nein"}</h2>
             <p>Hier steht die Liste der Kinder:</p>
-            {notbetreuung ? data.map((kind, index) => (
+            {data.map((kind, index) => (
                 <li key={index}>{kind.vorname} {kind.nachname}</li>
-            )): ""}
+            ))}
         </div>
     );
 }

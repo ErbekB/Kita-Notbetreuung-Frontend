@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 
 function Header() {
-    const [data, setData] = useState([]);
+    const [admin, setAdmin] = useState();
 
     useEffect(() => {
         return async function fetchData() {
-            await axios.get('http://localhost:8080/index/11')
+            await axios.get('http://localhost:8080/index/1')
                 .then(response => {
-                    setData(response.data);
+                    setAdmin(response.data.admin);
                 })
                 .catch(error => {
                     console.error('Error fetching data:', error);
@@ -25,14 +25,14 @@ function Header() {
             <div>
                 <div className="navButtons">
                     <a href="../Notfallbetreuung">
-                        <button className="navItem">Notbetreuung verwalten</button>
+                        {admin ? <button className="navItem">Notbetreuung verwalten</button> : ""}
                     </a>
                     <a href="../">
                         <button className="navItem">Home</button>
                     </a>
-                    {data.admin ? <a href="../Admin">
-                        <button className="navItem">Admin</button>
-                    </a> : ""}
+                    <a href="../Admin">
+                    {admin ? <button className="navItem">Admin</button> : ""}
+                    </a>
                     <a href="../Logout">
                         <button className="navItem">Logout</button>
                     </a>
