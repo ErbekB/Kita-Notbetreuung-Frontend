@@ -48,7 +48,7 @@ function ListeDerKinderDerGruppe() {
     }
 
 
-    function teilnehmeAendern(kindId) {
+    function teilnahmeAendern(kindId) {
         alert("bist du sicher")
         try {
             axios.post(`http://localhost:8080/notfall/teilnahme/${kindId}`);
@@ -79,7 +79,7 @@ function ListeDerKinderDerGruppe() {
                                     nehmen
                                 </button>}
                         {(1 + 1) === kind.id &&
-                        <button onClick={() => teilnehmeAendern(kind.id)}>nicht teilnehmen</button>}
+                        <button onClick={() => teilnahmeAendern(kind.id)}>nicht teilnehmen</button>}
                                 </p>
                                 ))
                 }
