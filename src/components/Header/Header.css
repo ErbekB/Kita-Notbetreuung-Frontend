@@ -1,0 +1,99 @@
+.header-container {
+    background-color: white; /* Hintergrundfarbe des Headers */
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Zentrieren des Inhalts im Header */
+    padding: 5px 10px;
+    color: black;
+    position: relative; /* Position relativ, damit absolute Elemente sich darauf beziehen */
+    max-width: 1300px; /* Maximale Breite des Headers */
+    margin: 0 auto; /* Zentrieren des Headers */
+}
+
+header h2 {
+    position: absolute;
+    left: 10px; /* Positionierung am linken Rand */
+    margin: 0;
+    font-size: 18px;
+    color: #1778F2; /* Facebook-Blau */
+}
+
+.navCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navItem, .logoutButton {
+    background: none;
+    border: none;
+    color: #606770;
+    cursor: pointer;
+    padding: 8px 35px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    position: relative;
+}
+
+.navItem i, .logoutButton i {
+    font-size: 16px;
+}
+
+.navItem:hover, .logoutButton:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.navItem:hover::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 10px;
+    white-space: nowrap;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.logoutButton {
+    position: absolute;
+    right: 10px;
+    color: #d9534f; /* Rotton für den Logout-Button */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.logoutButton:hover {
+    color: white;
+    background-color: #d9534f;
+}
+
+.navItem.active, .logoutButton.active {
+    color: #1778F2; /* Facebooks aktives Blau */
+}
+
+.navItem.active::before {
+    content: '';
+    display: block;
+    height: 2px;
+    background-color: #1778F2;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.navItem {
+    margin: 0 10px;
+    position: relative;
+}
