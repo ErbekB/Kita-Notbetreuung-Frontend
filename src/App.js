@@ -8,7 +8,7 @@ import Admin from './pages/Admin/Admin';
 import Login from './pages/Login/Login';
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import AuthCheck from "./pages/Login/AuthCheck";
+import Authenticator from "./pages/Login/Authenticator";
 
 function App() {
     const [istEingeloggt, setIstEingeloggt] = useState(false);
@@ -16,7 +16,7 @@ function App() {
     return (
         <div className="App">
             <Router>
-                <AuthCheck setIstEingeloggt={setIstEingeloggt}/>
+                <Authenticator setIstEingeloggt={setIstEingeloggt}/>
                 {istEingeloggt && <Header/>}
                 <Routes>
                     <Route path="/" element={<Home/>}/>

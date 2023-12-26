@@ -12,7 +12,7 @@ function Authenticator({setIstEingeloggt }) {
                 setIstEingeloggt(true);
             } catch (error) {
                 setIstEingeloggt(false);
-                navigate('/login');
+                navigate("/login");
             }
         };
 

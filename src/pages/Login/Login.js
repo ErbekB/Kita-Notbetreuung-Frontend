@@ -24,7 +24,7 @@ function Login({istEingeloggt, setIstEingeloggt}) {
                 passwort: passwort
             }, { withCredentials: true });
             setIstEingeloggt(true);
-            navigate('/')
+            navigate("/")
         } catch (error) {
             setLoginError("Login fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldedaten.");
         }
