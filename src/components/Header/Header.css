@@ -1,10 +1,15 @@
+.header-container {
+    background-color: white; /* Hintergrundfarbe des Headers */
+}
 header {
     display: flex;
     align-items: center;
-    justify-content: center; /* Zentrieren des gesamten Headers */
+    justify-content: center; /* Zentrieren des Inhalts im Header */
     padding: 5px 10px;
-    background-color: white;
     color: black;
+    position: relative; /* Position relativ, damit absolute Elemente sich darauf beziehen */
+    max-width: 1300px; /* Maximale Breite des Headers */
+    margin: 0 auto; /* Zentrieren des Headers */
 }
 
 header h2 {
@@ -62,7 +67,7 @@ header h2 {
 }
 
 .logoutButton {
-   position: absolute;
+    position: absolute;
     right: 10px;
     color: #d9534f; /* Rotton für den Logout-Button */
     transition: background-color 0.3s, color 0.3s;

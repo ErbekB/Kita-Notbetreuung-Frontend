@@ -37,7 +37,7 @@ function Header() {
     };
 
     return (
-        <div>
+        <div className={"header-container"}>
             <header>
                 <h2>Kitaorganisation</h2>
                 <div className="navCenter">
@@ -62,11 +62,13 @@ function Header() {
                                 </button>
                             </Link>
                         )}
+                        <button className="logoutButton" onClick={abmelden}>
+                            <i className="fas fa-sign-out-alt"></i>
+                        </button>
+
                     </div>
+
                 </div>
-                <button className="logoutButton" onClick={abmelden}>
-                    <i className="fas fa-sign-out-alt"></i>
-                </button>
             </header>
         </div>
     );
