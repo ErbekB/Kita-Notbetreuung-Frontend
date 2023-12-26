@@ -21,7 +21,7 @@ function ListeDerKinderDerGruppe() {
     }, []);
 
 
-    const notbetreuungTeilnehmen = async (kindId) => {
+    function notbetreuungTeilnehmen (kindId) {
         try {
             axios.post(`http://localhost:8080/notfall/${kindId}`);
             const updatedData = data.map((kind) =>
