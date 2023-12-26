@@ -9,7 +9,7 @@ function Home() {
 
     useEffect(() => {
         return async function fetchData() {
-            await axios.get('http://localhost:8080/index/11')
+            await axios.get('http://localhost:8080/index/1')
                 .then(response => {
                     setData(response.data.kindList);
                     setNotbetreuung(response.data.notbetreuung);
@@ -22,7 +22,7 @@ function Home() {
 
     const toggleNotbetreuung = async () => {
         try {
-            await axios.post('http://localhost:8080/index/11');
+            await axios.post('http://localhost:8080/index/1');
             setNotbetreuung(notbetreuung => !notbetreuung);
         } catch (error) {
             console.error('Error toggling Notbetreuung:', error);
@@ -36,7 +36,7 @@ function Home() {
             <h1>Startseite</h1>
             <button className="navItem" onClick={toggleNotbetreuung}>Notbetreuung</button>
             <h2>Heute ist Notbetreuung: {notbetreuung ? "Ja" : "Nein"}</h2>
-            <p>Hier steht die Liste der Kinder aus der KitaGruppe die Notbetreuung benötigen:</p>
+            <p>Hier steht die Liste der Kinder:</p>
             {notbetreuung ? data.map((kind, index) => (
                 <li key={index}>{kind.vorname} {kind.nachname}</li>
             )): ""}
