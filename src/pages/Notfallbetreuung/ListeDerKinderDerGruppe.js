@@ -28,7 +28,7 @@ function ListeDerKinderDerGruppe() {
                 kind.id === kindId ? {...kind, teilnahmeNotbetreuung: true, counter : kind.counter +1} : kind
             );
             setData(updatedData);
-            console.log(data) //Todo counter prüfen
+            console.log(data)
             } catch (error) {
             console.error('Error', error);
         }
@@ -48,7 +48,7 @@ function ListeDerKinderDerGruppe() {
     }
 
 
-    function teilnehmeAendern(kindId) { //Todo think about the temporalData and a way to reset the data the next day
+    function teilnehmeAendern(kindId) {
         alert("bist du sicher")
         try {
             axios.post(`http://localhost:8080/notfall/teilnahme/${kindId}`);
