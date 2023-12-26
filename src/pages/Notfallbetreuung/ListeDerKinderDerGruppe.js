@@ -49,13 +49,18 @@ function ListeDerKinderDerGruppe() {
 
 
     function teilnahmeAendern(kindId) {
-        alert("bist du sicher")
+        const bestaetigen = window.confirm("Bitte bestätige die nicht-Teilnahme deines Kindes. Eine Änderung ist dannach nur noch durch den Administrator möglich");
+        if (bestaetigen){
         try {
             axios.post(`http://localhost:8080/notfall/teilnahme/${kindId}`);
             const temporalData = data.filter((kind) => kind.id !== kindId);
             setData(temporalData);
         } catch (error) {
             console.error('Error', error);
+        }
+        }
+        else {
+
         }
     }
 
