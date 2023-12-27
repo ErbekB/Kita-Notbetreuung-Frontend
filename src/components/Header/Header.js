@@ -12,7 +12,7 @@ function Header() {
     useEffect(() => {
         const datenAbrufen = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/index/11");
+                const response = await axios.get("http://localhost:8080/index", {withCredentials : true});
                 setDaten(response.data);
             } catch (error) {
                 console.error("Fehler beim Laden der Daten:", error);
