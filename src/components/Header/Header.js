@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Link, useNavigate, useLocation} from "react-router-dom";
+import "./Header.css"
 
 function Header() {
     const [daten, setDaten] = useState([]);
@@ -65,9 +66,7 @@ function Header() {
                         <button className="logoutButton" onClick={abmelden}>
                             <i className="fas fa-sign-out-alt"></i>
                         </button>
-
                     </div>
-
                 </div>
             </header>
         </div>

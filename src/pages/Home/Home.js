@@ -32,7 +32,7 @@ function Home() {
     return (
         <div className="Home">
             <h1>Startseite</h1>
-            <button className="navItem" onClick={toggleNotbetreuung}>Notbetreuung</button>
+            <button className="navItem2" onClick={toggleNotbetreuung}>Notbetreuung</button>
             <h2>Heute ist Notbetreuung: {notbetreuung ? "Ja" : "Nein"}</h2>
             <p>Hier steht die Liste der Kinder aus der KitaGruppe die Notbetreuung benötigen:</p>
             {data.map((kind, index) => (
