@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom';
 import "./App.css";
-import "./components/Header/Header.css"
 
 import Home from './pages/Home/Home';
 import Notfallbetreuung from './pages/Notfallbetreuung/Notfallbetreuung';
@@ -27,7 +26,6 @@ function App() {
                 </Routes>
                 {istEingeloggt && <Footer/>}
             </Router>
-
         </div>
     );
 }
