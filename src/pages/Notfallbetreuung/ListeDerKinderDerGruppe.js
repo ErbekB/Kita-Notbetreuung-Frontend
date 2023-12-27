@@ -4,15 +4,14 @@ import async from "async";
 
 function ListeDerKinderDerGruppe() {
     const [data, setData] = useState([])
-    const [counter, setCounter] = useState(0)
+    const [id, setId] = useState(0)
     /*const {user} = props*/
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/notfall/1')
-
+                const response = await axios.get('http://localhost:8080/notfall', {withCredentials: true})
+                setId(response.data.userId)
                 setData(response.data.kinder);
-                console.log("hallo");
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -78,12 +77,12 @@ function ListeDerKinderDerGruppe() {
             </h2>
                 {data.map((kind, index) => (
                     kind.teilnahmeNotbetreuung === false && <p key={index}> {kind.vorname} bisherige Teilnahmen: {kind.counter}
-                            {(1 + 1) === kind.id &&
+                            {(id) === kind.id &&
                                 <button onClick={() => notbetreuungTeilnehmen(kind.id)}>Notbetreuung für Kind {kind.vorname} in
                                     Anspruch
                                     nehmen
                                 </button>}
-                        {(1 + 1) === kind.id &&
+                        {(id) === kind.id &&
                         <button onClick={() => teilnahmeAendern(kind.id)}>nicht teilnehmen</button>}
                                 </p>
                                 ))
