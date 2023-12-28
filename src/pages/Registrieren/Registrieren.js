@@ -18,7 +18,7 @@ function Register({istEingeloggt}) {
         }
     }, [istEingeloggt, navigate]);
 
-    const validateForm = () => {
+    const valide = () => {
         if (name.length < 3 || name.length > 12) {
             setRegisterError("Benutzername muss zwischen 3 und 12 Zeichen lang sein.");
             return false;
@@ -40,7 +40,7 @@ function Register({istEingeloggt}) {
 
     const registrieren = async (event) => {
         event.preventDefault();
-        if (!validateForm()) {
+        if (!valide()) {
             return;
         }
         try {
