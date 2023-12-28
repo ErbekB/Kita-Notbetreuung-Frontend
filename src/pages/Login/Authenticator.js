@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
-function Authenticator({setIstEingeloggt }) {
+function Authenticator({ setIstEingeloggt }) {
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         const checkAuthStatus = async () => {
@@ -12,12 +13,15 @@ function Authenticator({setIstEingeloggt }) {
                 setIstEingeloggt(true);
             } catch (error) {
                 setIstEingeloggt(false);
-                navigate("/login");
+                // Prüfen, ob der aktuelle Pfad nicht '/register' ist, bevor zur Login-Seite umgeleitet wird
+                if (location.pathname !== "/registrieren") {
+                    navigate("/login");
+                }
             }
         };
 
         checkAuthStatus();
-    }, [setIstEingeloggt, navigate]);
+    }, [setIstEingeloggt, navigate, location.pathname]);
 
     return null;
 }
