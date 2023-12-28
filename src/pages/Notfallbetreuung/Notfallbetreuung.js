@@ -1,7 +1,5 @@
 import React from 'react';
-import './Notfallbetreuung.css';
 import ListeDerKinderDerGruppe from "./ListeDerKinderDerGruppe";
-import axios from "axios";
 
 function Notfallbetreuung() {
     return (

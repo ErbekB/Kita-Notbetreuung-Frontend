@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
+import "./Notfallbetreuung.css"
 
 function ListeDerKinderDerGruppe() {
     const [data, setData] = useState([]);
@@ -59,36 +60,56 @@ function ListeDerKinderDerGruppe() {
     const maxAnzeigeButtons = 5 - teilnehmendeKinder.length;
 
     return (
-        <div>
-            <div>
-                <h2>An Notbetreuung teilnehmend:</h2>
+        <div className="list-container">
+            <h2 className="list-title">An Notbetreuung teilnehmend:</h2>
+            <table className="kinder-table">
+                <tbody>
                 {teilnehmendeKinder.length > 0 ? (
                     teilnehmendeKinder.map((kind, index) => (
-                        <p key={index}>{kind.vorname} bisherige Teilnahmen: {kind.counter}
-                            <button onClick={() => nichtTeilnehmen(kind.id)}>Teilnahme zurückziehen</button>
-                        </p>
+                        <tr key={index}>
+                            <td>{kind.vorname} - bisherige Teilnahmen: {kind.counter}</td>
+                            <td>
+                                <button className="button button-danger" onClick={() => nichtTeilnehmen(kind.id)}>Teilnahme zurückziehen</button>
+                            </td>
+                        </tr>
                     ))
-                ) : <p>Es nehmen keine Kinder an der Notbetreuung teil.</p>}
-            </div>
-            <hr />
-            <div>
-                <h2>Kinder der Gruppe:</h2>
+                ) : (
+                    <tr>
+                        <td colSpan="2" className="no-kinder-message">Es nehmen keine Kinder an der Notbetreuung teil.</td>
+                    </tr>
+                )}
+                </tbody>
+            </table>
+
+            <h2 className="list-title">Kinder der Gruppe:</h2>
+            <table className="kinder-table">
+                <tbody>
                 {nichtTeilnehmendeKinder.length > 0 ? (
                     nichtTeilnehmendeKinder.map((kind, index) => (
-                        <p key={kind.id}>
-                            {kind.vorname} bisherige Teilnahmen: {kind.counter}
-                            {index < maxAnzeigeButtons && id === kind.id && (
-                                <button onClick={() => notbetreuungTeilnehmen(kind.id)}>Notbetreuung für Kind {kind.vorname} in Anspruch nehmen</button>
-                            )}
-                            {id === kind.id && (
-                                <button onClick={() => teilnahmeAendern(kind.id)}>Nicht teilnehmen</button>
-                            )}
-                        </p>
+                        kind.notbetreuungNichtNotwendig === false &&
+                        <tr key={kind.id}>
+                            <td>{kind.vorname} - bisherige Teilnahmen: {kind.counter}</td>
+                            <td>
+                                {index < maxAnzeigeButtons && id === kind.id && (
+                                    <button className="button" onClick={() => notbetreuungTeilnehmen(kind.id)}>Notbetreuung für Kind {kind.vorname} in Anspruch nehmen</button>
+                                )}
+                                {id === kind.id && (
+                                    <button className="button button-danger" onClick={() => teilnahmeAendern(kind.id)}>Nicht teilnehmen</button>
+                                )}
+                            </td>
+                        </tr>
                     ))
-                ) : <p>Es sind keine Kinder in dieser Gruppe.</p>}
-            </div>
+                ) : (
+                    <tr>
+                        <td colSpan="2" className="no-kinder-message">Es sind keine Kinder in dieser Gruppe.</td>
+                    </tr>
+                )}
+                </tbody>
+            </table>
         </div>
     );
 }
+
+
 
 export default ListeDerKinderDerGruppe;
