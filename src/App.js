@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import "./App.css";
 
 import Home from './pages/Home/Home';
@@ -9,6 +9,7 @@ import Login from './pages/Login/Login';
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Authenticator from "./pages/Login/Authenticator";
+import Registrieren from "./pages/Registrieren/Registrieren";
 
 function App() {
     const [istEingeloggt, setIstEingeloggt] = useState(false);
@@ -23,6 +24,7 @@ function App() {
                     <Route path="/Notfallbetreuung" element={<Notfallbetreuung/>}/>
                     <Route path="/admin" element={<Admin/>}/>
                     <Route path="/login" element={<Login istEingeloggt={istEingeloggt} setIstEingeloggt={setIstEingeloggt}/>}/>
+                    <Route path="/registrieren" element={<Registrieren istEingeloggt={istEingeloggt}/>}/>
                 </Routes>
                 {istEingeloggt && <Footer/>}
             </Router>
