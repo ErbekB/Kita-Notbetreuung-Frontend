@@ -1,11 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import "./Admin.css"
 
 function Admin() {
     const [elternListe, setElternListe] = useState([]);
     const [neuerElternName, setNeuerElternName] = useState('');
-    const [kindZuElternVorname, setKindZuElternVorname] = useState('');
-    const [kindZuElternNachname, setKindZuElternNachname] = useState('');
+    const [neuesKindVornameEltern, setNeuesKindVornameEltern] = useState('');
+    const [neuesKindNachnameEltern, setNeuesKindNachnameEltern] = useState('');
+    const [neuesKindVorname, setNeuesKindVorname] = useState('');
+    const [neuesKindNachname, setNeuesKindNachname] = useState('');
     const [selectedParentId, setSelectedParentId] = useState('');
 
     useEffect(() => {
@@ -15,7 +18,7 @@ function Admin() {
     function elternAbrufen() {
         axios.get('http://localhost:8080/admin/eltern', {withCredentials: true})
             .then(response => {
-                setElternListe(response.data.elternMitKindern); // Anpassung an die neue Antwortstruktur
+                setElternListe(response.data.elternMitKindern);
             })
             .catch(error => {
                 alert('Fehler beim Abrufen der Eltern');
@@ -25,13 +28,13 @@ function Admin() {
     function elternteilHinzufuegen() {
         axios.post('http://localhost:8080/admin/eltern', {
             name: neuerElternName,
-            kindVorname: kindZuElternVorname,
-            kindNachname: kindZuElternNachname
+            kindVorname: neuesKindVornameEltern,
+            kindNachname: neuesKindNachnameEltern
         }, {withCredentials: true})
             .then(() => {
                 setNeuerElternName('');
-                setKindZuElternVorname('');
-                setKindZuElternNachname('');
+                setNeuesKindVornameEltern('');
+                setNeuesKindNachnameEltern('');
                 elternAbrufen();
             })
             .catch(() => {
@@ -39,28 +42,30 @@ function Admin() {
             });
     }
 
-    function elternteilLoeschen(parentId) {
-        axios.delete(`http://localhost:8080/admin/eltern/${parentId}`, {withCredentials: true})
-            .then(() => {
-                elternAbrufen();
-            })
-            .catch(() => {
-                alert('Fehler beim Löschen des Elternteils');
-            });
+    function elternLoeschen(parentId) {
+        if (window.confirm("Sind Sie sicher, dass Sie diesen Elternteil löschen möchten?")) {
+            axios.delete(`http://localhost:8080/admin/eltern/${parentId}`, {withCredentials: true})
+                .then(() => {
+                    elternAbrufen();
+                })
+                .catch(() => {
+                    alert('Fehler beim Löschen des Elternteils');
+                });
+        }
     }
 
     function kindZuElternHinzufuegen() {
-        if (!selectedParentId || !kindZuElternVorname || !kindZuElternNachname) {
+        if (!selectedParentId || !neuesKindVorname || !neuesKindNachname) {
             alert('Bitte wählen Sie einen Elternteil und geben Sie Vor- und Nachnamen des Kindes ein');
             return;
         }
-        axios.post(`http://localhost:8080/admin/eltern/${selectedParentId}/kind-hinzufuegen`, {
-            vorname: kindZuElternVorname,
-            nachname: kindZuElternNachname
+        axios.post(`http://localhost:8080/admin/eltern/${selectedParentId}`, {
+            vorname: neuesKindVorname,
+            nachname: neuesKindNachname
         }, {withCredentials: true})
             .then(() => {
-                setKindZuElternVorname('');
-                setKindZuElternNachname('');
+                setNeuesKindVorname('');
+                setNeuesKindNachname('');
                 elternAbrufen();
             })
             .catch(() => {
@@ -68,10 +73,22 @@ function Admin() {
             });
     }
 
+    function counterAktualisieren(kindId, neuerCounter) {
+        if (window.confirm("Sind Sie sicher, dass Sie den Counter verändern möchten?")) {
+            axios.put(`http://localhost:8080/admin/kind-counter/${kindId}`, {neuerCounter}, {withCredentials: true})
+                .then(() => {
+                    elternAbrufen();
+                })
+                .catch(() => {
+                    alert('Fehler beim Aktualisieren des Counters');
+                });
+        }
+    }
+
     return (
-        <div>
-            <h1>Admin-Seite</h1>
-            <div>
+        <div className="admin-container">
+            <h1 className="admin-title">Admin-Seite</h1>
+            <div className="admin-section">
                 <h2>Elternteil hinzufügen</h2>
                 <input
                     type="text"
@@ -81,19 +98,19 @@ function Admin() {
                 />
                 <input
                     type="text"
-                    value={kindZuElternVorname}
-                    onChange={(e) => setKindZuElternVorname(e.target.value)}
+                    value={neuesKindVornameEltern}
+                    onChange={(e) => setNeuesKindVornameEltern(e.target.value)}
                     placeholder="Vorname des Kindes"
                 />
                 <input
                     type="text"
-                    value={kindZuElternNachname}
-                    onChange={(e) => setKindZuElternNachname(e.target.value)}
+                    value={neuesKindNachnameEltern}
+                    onChange={(e) => setNeuesKindNachnameEltern(e.target.value)}
                     placeholder="Nachname des Kindes"
                 />
                 <button onClick={elternteilHinzufuegen}>Neues Elternteil hinzufügen</button>
             </div>
-            <div>
+            <div className="admin-section">
                 <h2>Kind zu Elternteil hinzufügen</h2>
                 <div>
                     <select onChange={(e) => setSelectedParentId(e.target.value)} value={selectedParentId}
@@ -106,15 +123,15 @@ function Admin() {
                     </select>
                     <input
                         type="text"
-                        value={kindZuElternVorname}
-                        onChange={(e) => setKindZuElternVorname(e.target.value)}
+                        value={neuesKindVorname}
+                        onChange={(e) => setNeuesKindVorname(e.target.value)}
                         placeholder="Vorname des Kindes"
                         style={{marginRight: '10px'}}
                     />
                     <input
                         type="text"
-                        value={kindZuElternNachname}
-                        onChange={(e) => setKindZuElternNachname(e.target.value)}
+                        value={neuesKindNachname}
+                        onChange={(e) => setNeuesKindNachname(e.target.value)}
                         placeholder="Nachname des Kindes"
                         style={{marginRight: '10px'}}
                     />
@@ -122,32 +139,45 @@ function Admin() {
                 </div>
             </div>
 
-            <div>
-                <h2>Elternliste</h2>
+            <div className="admin-section">
+                <h2>Eltern und ihre Kinder</h2>
                 <table>
                     <thead>
                     <tr>
                         <th>Elternteil</th>
                         <th>Kind</th>
-                        <th>Aktionen</th>
                         <th>Counter</th>
+                        <th></th>
+                        <th>Aktionen</th>
                     </tr>
                     </thead>
                     <tbody>
                     {elternListe.map((elternteil) => (
-                        <tr key={elternteil.elternId}>
-                            <td>{elternteil.elternName}</td>
-                            <td>
-                                {elternteil.kinder.map((kind, index) => (
-                                    <div key={index}>{kind.vorname} {kind.nachname}</div>
-                                ))}
-                            </td>
-                            <td>
-                                <button onClick={() => elternteilLoeschen(elternteil.elternId)}>Elternteil löschen
-                                </button>
-                            </td>
-                            <td>{/* Counter und Logik zur Aktualisierung hier einfügen */}</td>
-                        </tr>
+                        elternteil.kinder.map((kind, index) => (
+                            <tr key={kind.kindId}>
+                                {index === 0 && (
+                                    <td rowSpan={elternteil.kinder.length}>
+                                        {elternteil.elternName}
+                                    </td>
+                                )}
+                                <td>{kind.vorname} {kind.nachname}</td>
+                                <td className="counter-value">
+                                    {kind.counter}
+                                </td>
+                                <td>
+                                    <button className="button button-orange" onClick={() => counterAktualisieren(kind.kindId, kind.counter + 1)}>+
+                                    </button>
+                                    <button className="button button-dark-orange" onClick={() => counterAktualisieren(kind.kindId, kind.counter - 1)}>-
+                                    </button>
+                                </td>
+                                {index === 0 && (
+                                    <td rowSpan={elternteil.kinder.length}>
+                                        <button className="button button-danger" onClick={() => elternLoeschen(elternteil.elternId)}>Mitglied Löschen
+                                        </button>
+                                    </td>
+                                )}
+                            </tr>
+                        ))
                     ))}
                     </tbody>
                 </table>
