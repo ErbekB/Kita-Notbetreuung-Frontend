@@ -8,12 +8,15 @@ function Header() {
     const [aktivesMenue, setAktivesMenue] = useState("home");
     const navigate = useNavigate();
     const location = useLocation();
+    const [notbetreuung, setNotbetreuung] = useState(false)
 
     useEffect(() => {
         const datenAbrufen = async () => {
             try {
                 const response = await axios.get("http://localhost:8080/index", {withCredentials : true});
                 setDaten(response.data);
+                console.log(response.data)
+                setNotbetreuung(response.data.notbetreuung)
             } catch (error) {
                 console.error("Fehler beim Laden der Daten:", error);
             }
@@ -49,7 +52,7 @@ function Header() {
                                 <i className="fas fa-home"></i>
                             </button>
                         </Link>
-                        <Link to="/Notfallbetreuung">
+                        <Link to={notbetreuung === true ? "/Notfallbetreuung" : "/"}>
                             <button className={`navItem ${aktivesMenue === "notbetreuung" ? "active" : ""}`}
                                     onClick={() => setAktivesMenue("notbetreuung")} data-label="Notbetreuung">
                                 <i className="fas fa-briefcase-medical"></i>

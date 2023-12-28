@@ -58,7 +58,7 @@ function ListeDerKinderDerGruppe() {
 
     // Berechnen, wie viele Kinder den Button angezeigt bekommen
     const maxAnzeigeButtons = 5 - teilnehmendeKinder.length;
-
+    data.sort((a, b) => a.counter - b.counter);
     return (
         <div className="list-container">
             <h2 className="list-title">An Notbetreuung teilnehmend:</h2>
