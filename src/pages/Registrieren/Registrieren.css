@@ -1,0 +1,93 @@
+/* Registrieren.css */
+
+/* Allgemeine Styles */
+.Register {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.Register form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title1 {
+    font-weight: bold;
+    color: #1877f2;
+    font-size: 36px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.Register input[type="text"],
+.Register input[type="password"],
+.Register input[type="number"] {
+    width: 280px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.Register button {
+    width: 280px;
+    padding: 10px;
+    background-color: #1877f2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    align-self: center;
+}
+
+.Register button:hover {
+    background-color: #166fe5;
+}
+
+.Register .error {
+    color: #f00;
+    margin-top: 10px;
+}
+
+.Bedienungsanleitung {
+    width: 50%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+
+.Bedienungsanleitung div {
+    font-size: 16px;
+    color: #1c1e21;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.Bedienungsanleitung .title2 {
+    font-weight: bold;
+    color: #1877f2;
+    font-size: 36px;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    text-align: center;
+}
