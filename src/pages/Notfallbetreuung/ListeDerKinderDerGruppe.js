@@ -53,6 +53,7 @@ function ListeDerKinderDerGruppe() {
         }
     }
 
+    console.log(data)
     const teilnehmendeKinder = data.filter(kind => kind.teilnahmeNotbetreuung);
     const nichtTeilnehmendeKinder = data.filter(kind => !kind.teilnahmeNotbetreuung);
 
@@ -65,6 +66,7 @@ function ListeDerKinderDerGruppe() {
                 <h2>An Notbetreuung teilnehmend:</h2>
                 {teilnehmendeKinder.length > 0 ? (
                     teilnehmendeKinder.map((kind, index) => (
+
                         <p key={index}>{kind.vorname} bisherige Teilnahmen: {kind.counter}
                             <button onClick={() => nichtTeilnehmen(kind.id)}>Teilnahme zurückziehen</button>
                         </p>
@@ -76,13 +78,14 @@ function ListeDerKinderDerGruppe() {
                 <h2>Kinder der Gruppe:</h2>
                 {nichtTeilnehmendeKinder.length > 0 ? (
                     nichtTeilnehmendeKinder.map((kind, index) => (
+                        kind.notbetreuungNichtNotwendig === false &&
                         <p key={kind.id}>
                             {kind.vorname} bisherige Teilnahmen: {kind.counter}
                             {index < maxAnzeigeButtons && id === kind.id && (
                                 <button onClick={() => notbetreuungTeilnehmen(kind.id)}>Notbetreuung für Kind {kind.vorname} in Anspruch nehmen</button>
                             )}
                             {id === kind.id && (
-                                <button onClick={() => teilnahmeAendern(kind.id)}>Nicht teilnehmen</button>
+                                <button onClick={() => teilnahmeNichtNotwendig(kind.id)}>Nicht teilnehmen</button>
                             )}
                         </p>
                     ))
