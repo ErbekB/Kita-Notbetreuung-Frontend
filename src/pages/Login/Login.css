@@ -1,0 +1,83 @@
+/* Login.css */
+
+/* Allgemeine Styles */
+.Login-Body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.Login-Container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around; /* Platzieren der Inhalte in der Mitte */
+    padding: 20px; /* Hier kannst du den Abstand anpassen */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 50%; /* Anpassen der Breite des Login-Bereichs */
+}
+
+.KitaImage {
+    max-width: 300px; /* Ändere die Breite entsprechend deiner Anforderungen */
+}
+
+.KitaTitle {
+    font-weight: bold;
+    color: #1877f2;
+    font-size: 36px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.KitaDescription {
+    font-size: 20px;
+    color: #1c1e21;
+    text-align: center;
+}
+
+.Login {
+    width: 50%; /* Anpassen der Breite des Login-Bereichs */
+}
+
+.Benutzername label,
+.Passwort label {
+    color: #1c1e21; /* Farbe für Label wie Facebook-Text */
+
+}
+
+.Benutzername input[type="text"],
+.Passwort input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.Anmeldeknopf {
+    width: 100%;
+    padding: 10px;
+    background-color: #1877f2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.Anmeldeknopf:hover {
+    background-color: #166fe5;
+}
+
+.error {
+    color: #f00;
+    margin-top: 10px;
+}

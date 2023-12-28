@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
+import "./Registrieren.css"
 import axios from "axios";
+import KitaImage from "../../images/Logo.png";
 
 function Register({istEingeloggt}) {
     const [name, setName] = useState("");
@@ -59,55 +61,96 @@ function Register({istEingeloggt}) {
 
     return (
         <div className="Register">
-            <h1>Registrieren</h1>
             <form onSubmit={registrieren}>
+                <div className="Logo">
+                    <img src={KitaImage} alt="Kita-Bild" className="KitaImage"/>
+                </div>
+                <div className="title1">
+                    Registrieren
+                </div>
                 <div>
-                    <label>Kita:</label>
                     <input
                         type="text"
                         value={kita}
                         onChange={(e) => setKita(e.target.value)}
+                        placeholder="Kita"
                         required
                     />
                 </div>
+                <br/>
                 <div>
-                    <label>Postleitzahl:</label>
                     <input
                         type="number"
                         value={postleitzahl}
                         onChange={(e) => setPostleitzahl(e.target.value)}
+                        placeholder="Postleitzahl"
                         required
                     />
                 </div>
+                <br/>
                 <div>
-                    <label>Kitagruppe:</label>
                     <input
                         type="text"
                         value={kitaGruppe}
                         onChange={(e) => setKitaGruppe(e.target.value)}
+                        placeholder="Kitagruppe"
                         required
                     />
                 </div>
+                <br/>
                 <div>
-                    <label>Benutzername:</label>
                     <input
                         type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
+                        placeholder="Benutzername"
                         required
                     />
                 </div>
+                <br/>
                 <div>
-                    <label>Passwort:</label>
                     <input
                         type="password"
                         value={passwort}
                         onChange={(e) => setPasswort(e.target.value)}
+                        placeholder="Passwort"
                         required
                     />
                 </div>
+                <br/>
                 <button type="submit">Registrieren</button>
                 {registerError && <p className="error">{registerError}</p>}
+                <div>
+                    <br/>
+                    Zurück zum <Link to="/login">Login</Link>.
+                </div>
+            </form>
+            <br/>
+            <form className="Bedienungsanleitung">
+                <div className="title2">
+                    Bedienungsanleitung
+                </div>
+                <div className="Schritte">
+                    <div>
+                        1. Sprich dich mit deiner Kitagruppe ab.
+                    </div>
+                    <br/>
+                    <div>
+                        2. Registriere dich und erstelle die Kitagruppe.
+                    </div>
+                    <br/>
+                    <div>
+                        3. Du bist jetzt der Admin der Kitagruppe
+                    </div>
+                    <br/>
+                    <div>
+                        4. Lade nun alle Eltern der Kitagruppe ein.
+                    </div>
+                    <br/>
+                    <div>
+                        5. Meldet euch mit den Namen eurer Kinder an.
+                    </div>
+                </div>
             </form>
         </div>
     );
