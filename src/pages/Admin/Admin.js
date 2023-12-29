@@ -1,22 +1,22 @@
-import React, {useState, useEffect} from 'react';
-import axios from 'axios';
+import React, {useState, useEffect} from "react";
+import axios from "axios";
 import "./Admin.css"
 
 function Admin() {
     const [elternListe, setElternListe] = useState([]);
-    const [neuerElternName, setNeuerElternName] = useState('');
-    const [neuesKindVornameEltern, setNeuesKindVornameEltern] = useState('');
-    const [neuesKindNachnameEltern, setNeuesKindNachnameEltern] = useState('');
-    const [neuesKindVorname, setNeuesKindVorname] = useState('');
-    const [neuesKindNachname, setNeuesKindNachname] = useState('');
-    const [selectedParentId, setSelectedParentId] = useState('');
+    const [neuerElternName, setNeuerElternName] = useState("");
+    const [neuesKindVornameEltern, setNeuesKindVornameEltern] = useState("");
+    const [neuesKindNachnameEltern, setNeuesKindNachnameEltern] = useState("");
+    const [neuesKindVorname, setNeuesKindVorname] = useState("");
+    const [neuesKindNachname, setNeuesKindNachname] = useState("");
+    const [selectedParentId, setSelectedParentId] = useState("");
 
     useEffect(() => {
         elternAbrufen();
     }, []);
 
     function elternAbrufen() {
-        axios.get('http://localhost:8080/admin/eltern', {withCredentials: true})
+        axios.get("http://localhost:8080/admin/eltern", {withCredentials: true})
             .then(response => {
                 setElternListe(response.data.elternMitKindern);
             })
@@ -26,19 +26,19 @@ function Admin() {
     }
 
     function elternteilHinzufuegen() {
-        axios.post('http://localhost:8080/admin/eltern', {
+        axios.post("http://localhost:8080/admin/eltern", {
             name: neuerElternName,
             kindVorname: neuesKindVornameEltern,
             kindNachname: neuesKindNachnameEltern
         }, {withCredentials: true})
             .then(() => {
-                setNeuerElternName('');
-                setNeuesKindVornameEltern('');
-                setNeuesKindNachnameEltern('');
+                setNeuerElternName("");
+                setNeuesKindVornameEltern("");
+                setNeuesKindNachnameEltern("");
                 elternAbrufen();
             })
             .catch(() => {
-                alert('Fehler beim Hinzufügen des Elternteils');
+                alert("Fehler beim Hinzufügen des Elternteils");
             });
     }
 
@@ -49,14 +49,14 @@ function Admin() {
                     elternAbrufen();
                 })
                 .catch(() => {
-                    alert('Fehler beim Löschen des Elternteils');
+                    alert("Fehler beim Löschen des Elternteils");
                 });
         }
     }
 
     function kindZuElternHinzufuegen() {
         if (!selectedParentId || !neuesKindVorname || !neuesKindNachname) {
-            alert('Bitte wählen Sie einen Elternteil und geben Sie Vor- und Nachnamen des Kindes ein');
+            alert("Bitte wählen Sie einen Elternteil und geben Sie Vor- und Nachnamen des Kindes ein");
             return;
         }
         axios.post(`http://localhost:8080/admin/eltern/${selectedParentId}`, {
@@ -64,12 +64,12 @@ function Admin() {
             nachname: neuesKindNachname
         }, {withCredentials: true})
             .then(() => {
-                setNeuesKindVorname('');
-                setNeuesKindNachname('');
+                setNeuesKindVorname("");
+                setNeuesKindNachname("");
                 elternAbrufen();
             })
             .catch(() => {
-                alert('Fehler beim Hinzufügen des Kindes');
+                alert("Fehler beim Hinzufügen des Kindes");
             });
     }
 
@@ -80,7 +80,7 @@ function Admin() {
                     elternAbrufen();
                 })
                 .catch(() => {
-                    alert('Fehler beim Aktualisieren des Counters');
+                    alert("Fehler beim Aktualisieren des Counters");
                 });
         }
     }
@@ -133,7 +133,7 @@ function Admin() {
                         value={neuesKindNachname}
                         onChange={(e) => setNeuesKindNachname(e.target.value)}
                         placeholder="Nachname des Kindes"
-                        style={{marginRight: '10px'}}
+                        style={{marginRight: "10px"}}
                     />
                     <button onClick={kindZuElternHinzufuegen}>Kind hinzufügen</button>
                 </div>
