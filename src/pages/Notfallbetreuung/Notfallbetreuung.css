@@ -1,36 +1,53 @@
-.list-container {
+.kindergruppe-container {
     background-color: white;
     max-width: 1300px;
     margin: 20px auto;
-    padding: 10px;
+    padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.list-title {
+.kindergruppe-title {
     color: #1778F2;
-    font-size: 20px;
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #f7f7f7;
-    border-radius: 5px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
-.kinder-table {
+.kindergruppe-section {
+    background-color: #f7f7f7;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.kindergruppe-section-title {
+    color: #1778F2;
+    margin-bottom: 10px;
+}
+
+.kindergruppe-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.kinder-table tr:nth-child(even) {
-    background-color: #f7f7f7;
-}
-
-.kinder-table td {
+.kindergruppe-table th, .kindergruppe-table td {
     padding: 8px;
     border-bottom: 1px solid #eaeaea;
     text-align: center;
+}
+
+.kindergruppe-table th.kind, .kindergruppe-table td.kind {
+    width: 33%;
+}
+
+.kindergruppe-table th.teilnahmen, .kindergruppe-table td.teilnahmen {
+    width: 33%;
+}
+
+.kindergruppe-table th.aktion, .kindergruppe-table td.aktion {
+    width: 33%;
 }
 
 .button {
