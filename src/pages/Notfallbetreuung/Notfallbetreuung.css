@@ -1,6 +1,15 @@
+.kindergruppe-body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .kindergruppe-container {
     background-color: white;
-    max-width: 1300px;
+    width: 1300px;
     margin: 20px auto;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -13,11 +22,9 @@
 }
 
 .kindergruppe-section {
-    background-color: #f7f7f7;
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .kindergruppe-section-title {

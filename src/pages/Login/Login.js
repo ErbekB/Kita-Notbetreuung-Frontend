@@ -80,7 +80,6 @@ function Login({istEingeloggt, setIstEingeloggt}) {
                             <br/>
                             Noch kein Benutzer? Hier geht es zur <Link to="/registrieren">Registrierung</Link>.
                         </div>
-
                     </form>
                     <br/>
                 </div>
