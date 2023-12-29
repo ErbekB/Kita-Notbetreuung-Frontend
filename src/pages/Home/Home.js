@@ -13,7 +13,7 @@ function Home() {
 
     useEffect(() => {
         return async function fetchData() {
-            await axios.get('http://localhost:8080/index', {withCredentials : true})
+            await axios.get('http://localhost:8080/index', {withCredentials: true})
                 .then(response => {
                     setData(response.data.kindList);
                     setAdmin(response.data.admin);
@@ -28,11 +28,16 @@ function Home() {
 
     const toggleNotbetreuung = async () => {
         try {
-            await axios.post('http://localhost:8080/index',{withCredentials : true});
-            setNotbetreuung(notbetreuung => !notbetreuung);
+            await axios.post('http://localhost:8080/index', "", {withCredentials: true});
+            setNotbetreuung((notbetreuung) => !notbetreuung);
         } catch (error) {
-            console.error('Error toggling Notbetreuung:', error);
+
+            console.error('Fehler beim Umschalten der Notbetreuung:', error);
         }
+    };
+
+    const onChange = date => {
+        setDate(date)
     };
 
     data.sort((a, b) => a.counter - b.counter);
@@ -40,15 +45,13 @@ function Home() {
     return (
         <div className="Home">
             <h1>Startseite</h1>
-            {admin ? <div className='calendar-container'>
-                <Calendar onChange={setDate} value={date}/>
-            </div> : ""}
-            <h2>Heute ist Notbetreuung: {notbetreuung ? "Ja" : "Nein"}</h2>
+            {admin ? <div className='calendar-container'><Calendar onChange={onChange} value={date}/></div> : ""}
+            <h2>Notbetreuung am: {date.toLocaleDateString('de-DE')}</h2>
+            {admin ? <button onClick={toggleNotbetreuung}>Notbetreuung</button> : ""}
             <p>{kitaGruppe}</p>
             {data.map((kind, index) => (
                 <li key={index}>{kind.vorname} {kind.nachname}</li>
             ))}
-
         </div>
     );
 }
