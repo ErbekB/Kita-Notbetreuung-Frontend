@@ -5,12 +5,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
 }
 .home-container {
     background-color: white;
-    max-width: 1300px;
+    width: 1300px;
     margin: 20px auto;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -31,7 +29,6 @@
 }
 
 table {
-    width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -40,6 +37,22 @@ table {
 table tr:nth-child(even) {
     background-color: #f7f7f7;
 }
+
+.kindergruppe-table th.kind,
+.kindergruppe-table td.kind {
+    width: 33%;
+}
+
+.kindergruppe-table th.teilnahmen,
+.kindergruppe-table td.teilnahmen {
+    width: 33%;
+}
+
+.kindergruppe-table th.aktion,
+.kindergruppe-table td.aktion {
+    width: 33%;
+}
+
 
 table th,
 table td {

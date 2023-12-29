@@ -75,7 +75,7 @@ function Admin() {
 
     function kindLoeschen(elternId, kindId) {
         if (window.confirm("Sind Sie sicher, dass Sie dieses Kind löschen möchten?")) {
-            axios.delete(`http://localhost:8080/admin/eltern/${elternId}/kind/${kindId}`, { withCredentials: true })
+            axios.delete(`http://localhost:8080/admin/eltern/${elternId}/kind/${kindId}`, {withCredentials: true})
                 .then(() => {
                     elternAbrufen();
                 })
@@ -110,118 +110,125 @@ function Admin() {
     }
 
     return (
-        <div className="admin-container">
-            <h1 className="admin-title">Admin-Seite</h1>
-            <div className="admin-section">
-                <h2>Elternteil hinzufügen</h2>
-                <input
-                    type="text"
-                    value={neuerElternName}
-                    onChange={(e) => setNeuerElternName(e.target.value)}
-                    placeholder="Name des Elternteils"
-                />
-                <input
-                    type="text"
-                    value={neuesKindVornameEltern}
-                    onChange={(e) => setNeuesKindVornameEltern(e.target.value)}
-                    placeholder="Vorname des Kindes"
-                />
-                <input
-                    type="text"
-                    value={neuesKindNachnameEltern}
-                    onChange={(e) => setNeuesKindNachnameEltern(e.target.value)}
-                    placeholder="Nachname des Kindes"
-                />
-                <button onClick={elternteilHinzufuegen}>Neues Elternteil hinzufügen</button>
-            </div>
-            <div className="admin-section">
-                <h2>Kind zu Elternteil hinzufügen</h2>
-                <div>
-                    <select onChange={(e) => setSelectedParentId(e.target.value)} value={selectedParentId}
-                            style={{marginRight: '10px'}}>
-                        <option value="">Elternteil auswählen</option>
-                        {elternListe.map((elternteil) => (
-                            <option key={elternteil.elternId}
-                                    value={elternteil.elternId}>{elternteil.elternName}</option>
-                        ))}
-                    </select>
+        <div className="admin-body">
+            <div className="admin-container">
+                <h1 className="admin-title">Admin-Seite</h1>
+                <div className="admin-section">
+                    <h2>Elternteil hinzufügen</h2>
                     <input
                         type="text"
-                        value={neuesKindVorname}
-                        onChange={(e) => setNeuesKindVorname(e.target.value)}
+                        value={neuerElternName}
+                        onChange={(e) => setNeuerElternName(e.target.value)}
+                        placeholder="Name des Elternteils"
+                    />
+                    <input
+                        type="text"
+                        value={neuesKindVornameEltern}
+                        onChange={(e) => setNeuesKindVornameEltern(e.target.value)}
                         placeholder="Vorname des Kindes"
-                        style={{marginRight: '10px'}}
                     />
                     <input
                         type="text"
-                        value={neuesKindNachname}
-                        onChange={(e) => setNeuesKindNachname(e.target.value)}
+                        value={neuesKindNachnameEltern}
+                        onChange={(e) => setNeuesKindNachnameEltern(e.target.value)}
                         placeholder="Nachname des Kindes"
-                        style={{marginRight: "10px"}}
                     />
-                    <button onClick={kindZuElternHinzufuegen}>Kind hinzufügen</button>
+                    <button onClick={elternteilHinzufuegen}>Neues Elternteil hinzufügen</button>
+                </div>
+
+                <div className="admin-section">
+                    <h2>Kind zu Elternteil hinzufügen</h2>
+                    <div>
+                        <select onChange={(e) => setSelectedParentId(e.target.value)} value={selectedParentId}>
+                            <option value="">Elternteil auswählen</option>
+                            {elternListe.map((elternteil) => (
+                                <option key={elternteil.elternId}
+                                        value={elternteil.elternId}>{elternteil.elternName}</option>
+                            ))}
+                        </select>
+                        <input
+                            type="text"
+                            value={neuesKindVorname}
+                            onChange={(e) => setNeuesKindVorname(e.target.value)}
+                            placeholder="Vorname des Kindes"
+                        />
+                        <input
+                            type="text"
+                            value={neuesKindNachname}
+                            onChange={(e) => setNeuesKindNachname(e.target.value)}
+                            placeholder="Nachname des Kindes"
+                        />
+                        <button onClick={kindZuElternHinzufuegen}>Kind hinzufügen</button>
+                    </div>
                 </div>
             </div>
 
-            <div className="admin-section">
-                <h2>Eltern und ihre Kinder</h2>
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Elternteil</th>
-                        <th>Kind</th>
-                        <th>Counter</th>
-                        <th></th>
-                        <th>Aktionen</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {elternListe.map((elternteil) => (
-                        elternteil.kinder.map((kind, index) => (
-                            <tr key={kind.kindId}>
-                                {index === 0 && (
-                                    <td rowSpan={elternteil.kinder.length}>
-                                        {elternteil.elternName}
+            <div className="admin-container">
+                <div className="admin-section">
+                    <h1 className="admin-title">Eltern und ihre Kinder</h1>
+                    <br/>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Elternteil</th>
+                            <th>Kind</th>
+                            <th>Counter</th>
+                            <th></th>
+                            <th>Aktionen</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {elternListe.map((elternteil) => (
+                            elternteil.kinder.map((kind, index) => (
+                                <tr key={kind.kindId}>
+                                    {index === 0 && (
+                                        <td rowSpan={elternteil.kinder.length}>
+                                            {elternteil.elternName}
+                                        </td>
+                                    )}
+                                    <td>{kind.vorname} {kind.nachname}</td>
+                                    <td className="counter-value">
+                                        {kind.counter}
                                     </td>
-                                )}
-                                <td>{kind.vorname} {kind.nachname}</td>
-                                <td className="counter-value">
-                                    {kind.counter}
-                                </td>
-                                <td>
-                                    <button className="button button-orange" onClick={() => counterAktualisieren(kind.kindId, kind.counter + 1)}>+
-                                    </button>
-                                    <button className="button button-dark-orange" onClick={() => counterAktualisieren(kind.kindId, kind.counter - 1)}>-
-                                    </button>
-                                </td>
-                                <td>
-                                    {elternteil.kinder.length > 1 ? (
-                                        <button
-                                            className="button button-danger"
-                                            onClick={() => kindLoeschen(elternteil.elternId, kind.kindId)}
-                                        >
-                                            Kind {kind.vorname} löschen
+                                    <td>
+                                        <button className="button button-orange"
+                                                onClick={() => counterAktualisieren(kind.kindId, kind.counter + 1)}>+
                                         </button>
-                                    ) : (
-                                        index === 0 && (
+                                        <button className="button button-dark-orange"
+                                                onClick={() => counterAktualisieren(kind.kindId, kind.counter - 1)}>-
+                                        </button>
+                                    </td>
+                                    <td>
+                                        {elternteil.kinder.length > 1 ? (
                                             <button
                                                 className="button button-danger"
-                                                onClick={() => elternLoeschen(elternteil.elternId)}
+                                                onClick={() => kindLoeschen(elternteil.elternId, kind.kindId)}
                                             >
-                                                Mitglied löschen
+                                                Kind löschen
                                             </button>
-                                        )
-                                    )}
-                                </td>
-                            </tr>
-                        ))
-                    ))}
-                    </tbody>
-                </table>
-                <button className="button button-reset-all" onClick={counterAllerKinderZuruecksetzen}>
-                    Counter aller Kinder zurücksetzen
-                </button>
+                                        ) : (
+                                            index === 0 && (
+                                                <button
+                                                    className="button button-danger"
+                                                    onClick={() => elternLoeschen(elternteil.elternId)}
+                                                >
+                                                    Mitglied löschen
+                                                </button>
+                                            )
+                                        )}
+                                    </td>
+                                </tr>
+                            ))
+                        ))}
+                        </tbody>
+                    </table>
+                    <button className="button button-reset-all" onClick={counterAllerKinderZuruecksetzen}>
+                        Counter aller Kinder zurücksetzen
+                    </button>
+                </div>
             </div>
+
+
         </div>
     );
 }

@@ -1,6 +1,15 @@
+.admin-body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .admin-container {
     background-color: white;
-    max-width: 1300px;
+    width: 1300px;
     margin: 20px auto;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -9,15 +18,19 @@
 .admin-title {
     color: #1778F2;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.admin-labels {
+    width: 100%;
 }
 
 .admin-section {
-    background-color: #f7f7f7;
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 0;
 }
 
 .admin-section h2 {
@@ -47,12 +60,14 @@ table th {
     color: white;
 }
 
-input[type="text"], select {
-    width: 100%; /* Breite auf 100% für eine einheitliche Größe */
-    padding: 8px; /* Ausreichend Polsterung */
-    margin-bottom: 10px; /* Abstand zum nächsten Element */
-    border-radius: 4px; /* Leicht abgerundete Ecken */
-    border: 1px solid #ddd; /* Subtile Grenze */
+input[type="text"],
+select {
+    width: 1270px;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
 }
 
 /* Stil für Buttons */
@@ -81,6 +96,7 @@ button:hover {
 /* Spezifische Stile für bestimmte Buttons */
 .button-danger {
     background-color: #d9534f;
+    width: 130px;
 }
 
 .button-danger:hover {
