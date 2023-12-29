@@ -1,0 +1,109 @@
+.admin-container {
+    background-color: white;
+    max-width: 1300px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-title {
+    color: #1778F2;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admin-section {
+    background-color: #f7f7f7;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.admin-section h2 {
+    color: #1778F2;
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table tr:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+table th, table td {
+    padding: 8px;
+    border-bottom: 1px solid #eaeaea;
+    text-align: center;
+}
+
+table th {
+    background-color: #1778F2;
+    color: white;
+}
+
+input[type="text"], select {
+    width: 100%; /* Breite auf 100% für eine einheitliche Größe */
+    padding: 8px; /* Ausreichend Polsterung */
+    margin-bottom: 10px; /* Abstand zum nächsten Element */
+    border-radius: 4px; /* Leicht abgerundete Ecken */
+    border: 1px solid #ddd; /* Subtile Grenze */
+}
+
+/* Stil für Buttons */
+button {
+    background-color: #1778F2;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    margin-right: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+    background-color: #1456b2;
+}
+
+.no-data-message {
+    text-align: center;
+    color: #606770;
+    font-style: italic;
+    padding: 10px;
+}
+
+/* Spezifische Stile für bestimmte Buttons */
+.button-danger {
+    background-color: #d9534f;
+}
+
+.button-danger:hover {
+    background-color: #c9302c;
+}
+
+.button-orange {
+    background-color: #f0ad4e;
+}
+
+.button-orange:hover {
+    background-color: #ec971f;
+}
+
+.button-dark-orange {
+    background-color: #d58512;
+}
+
+.button-dark-orange:hover {
+    background-color: #c26d11;
+}
+
+/* Stil für Counter-Zahlen */
+.counter-value {
+    color: #28a745; /* Grüne Farbe für Zahlen */
+}
