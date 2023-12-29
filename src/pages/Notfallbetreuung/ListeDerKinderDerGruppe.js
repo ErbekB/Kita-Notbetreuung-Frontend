@@ -62,8 +62,9 @@ function ListeDerKinderDerGruppe() {
 
 
     return (
+        <div className="kindergruppe-body">
         <div className="kindergruppe-container">
-            <h1 className="kindergruppe-title">Liste der Kinder der Gruppe</h1>
+            <h1 className="kindergruppe-title">Notbetreuung</h1>
 
             <div className="kindergruppe-section">
                 <h2 className="kindergruppe-section-title">An Notbetreuung teilnehmend:</h2>
@@ -132,6 +133,7 @@ function ListeDerKinderDerGruppe() {
                     </tbody>
                 </table>
             </div>
+        </div>
         </div>
     );
 }
