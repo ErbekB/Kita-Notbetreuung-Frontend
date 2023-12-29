@@ -73,6 +73,30 @@ function Admin() {
             });
     }
 
+    function kindLoeschen(elternId, kindId) {
+        if (window.confirm("Sind Sie sicher, dass Sie dieses Kind löschen möchten?")) {
+            axios.delete(`http://localhost:8080/admin/eltern/${elternId}/kind/${kindId}`, { withCredentials: true })
+                .then(() => {
+                    elternAbrufen();
+                })
+                .catch(() => {
+                    alert("Fehler beim Löschen des Kindes");
+                });
+        }
+    }
+
+    function counterAllerKinderZuruecksetzen() {
+        if (window.confirm("Sind Sie sicher, dass Sie den Counter für alle Kinder zurücksetzen möchten?")) {
+            axios.put("http://localhost:8080/admin/reset-counter", {}, {withCredentials: true})
+                .then(() => {
+                    elternAbrufen();
+                })
+                .catch(() => {
+                    alert("Fehler beim Zurücksetzen des Counters");
+                });
+        }
+    }
+
     function counterAktualisieren(kindId, neuerCounter) {
         if (window.confirm("Sind Sie sicher, dass Sie den Counter verändern möchten?")) {
             axios.put(`http://localhost:8080/admin/kind-counter/${kindId}`, {neuerCounter}, {withCredentials: true})
@@ -170,17 +194,33 @@ function Admin() {
                                     <button className="button button-dark-orange" onClick={() => counterAktualisieren(kind.kindId, kind.counter - 1)}>-
                                     </button>
                                 </td>
-                                {index === 0 && (
-                                    <td rowSpan={elternteil.kinder.length}>
-                                        <button className="button button-danger" onClick={() => elternLoeschen(elternteil.elternId)}>Mitglied Löschen
+                                <td>
+                                    {elternteil.kinder.length > 1 ? (
+                                        <button
+                                            className="button button-danger"
+                                            onClick={() => kindLoeschen(elternteil.elternId, kind.kindId)}
+                                        >
+                                            Kind {kind.vorname} löschen
                                         </button>
-                                    </td>
-                                )}
+                                    ) : (
+                                        index === 0 && (
+                                            <button
+                                                className="button button-danger"
+                                                onClick={() => elternLoeschen(elternteil.elternId)}
+                                            >
+                                                Mitglied löschen
+                                            </button>
+                                        )
+                                    )}
+                                </td>
                             </tr>
                         ))
                     ))}
                     </tbody>
                 </table>
+                <button className="button button-reset-all" onClick={counterAllerKinderZuruecksetzen}>
+                    Counter aller Kinder zurücksetzen
+                </button>
             </div>
         </div>
     );

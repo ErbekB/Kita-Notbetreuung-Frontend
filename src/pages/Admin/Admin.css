@@ -107,3 +107,23 @@ button:hover {
 .counter-value {
     color: #28a745; /* Grüne Farbe für Zahlen */
 }
+
+.button-reset-all {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #dc3545; /* Rote Farbe für Gefahr */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-reset-all:hover {
+    background-color: #c82333; /* Dunklerer Rotton bei Hover */
+}
+
+.button-reset-all:focus {
+    outline: none; /* Entfernt den Fokus-Umriss */
+}
