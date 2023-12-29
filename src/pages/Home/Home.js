@@ -42,18 +42,38 @@ function Home() {
 
     data.sort((a, b) => a.counter - b.counter);
 
+    // ...
+
     return (
-        <div className="Home">
-            <h1>Startseite</h1>
-            {admin ? <div className='calendar-container'><Calendar onChange={onChange} value={date}/></div> : ""}
-            <h2>Notbetreuung am: {date.toLocaleDateString('de-DE')}</h2>
-            {admin ? <button onClick={toggleNotbetreuung}>Notbetreuung</button> : ""}
-            <p>{kitaGruppe}</p>
-            {data.map((kind, index) => (
-                <li key={index}>{kind.vorname} {kind.nachname}</li>
-            ))}
+        <div className="home-body">
+            <div className="home-container">
+                <h1 className="home-title">Startseite</h1>
+                {admin ? <div className='calendar-container'><Calendar onChange={onChange} value={date}/></div> : ""}
+                <h2 className="home-benachrichtigung">Notbetreuung am: {date.toLocaleDateString('de-DE')}</h2>
+                {admin ? <button onClick={toggleNotbetreuung}>Notbetreuung</button> : ""}
+                <p>{kitaGruppe}</p>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Nachname</th>
+                        <th>Teilnahme</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {data.map((kind, index) => (
+                        <tr key={index}>
+                            <td>{kind.vorname}</td>
+                            <td>{kind.nachname}</td>
+                            <td>{kind.counter}</td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
+
 }
 
 export default Home;

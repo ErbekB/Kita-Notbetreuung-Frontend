@@ -1,0 +1,49 @@
+/* NewHome.css */
+.home-body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.home-container {
+    background-color: white;
+    max-width: 1300px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.home-title {
+    color: #1778F2;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.home-benachrichtigung {
+    text-align: center;
+}
+
+.calendar-container {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+table tr:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+table th,
+table td {
+    padding: 8px;
+    border-bottom: 1px solid #eaeaea;
+    text-align: center;
+}
