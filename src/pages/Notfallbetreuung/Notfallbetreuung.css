@@ -3,8 +3,8 @@
     background-color: #f0f2f5;
     display: flex;
     justify-content: center;
-    align-items: center;
-
+    align-items: flex-start;
+    min-height: 93vh;
 }
 
 .kindergruppe-container {

@@ -1,9 +1,12 @@
 import React from 'react';
+import "./Footer.css"
 
-function Footer(props) {
+function Footer() {
     return (
-        <div>
-            <p>"Effizient, Effektiv, Essentiell - Kita-Notbetreuung"</p>
+        <div className="footer-container">
+            <footer>
+                <p>"Effizient, Effektiv, Essentiell - Kita-Notbetreuung"</p>
+            </footer>
         </div>
     );
 }
