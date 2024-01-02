@@ -2,53 +2,53 @@ import React, {useState} from 'react';
 import axios from "axios";
 import {redirect} from "react-router-dom";
 
-function ProfilBearbeiten(props) {
-    const parentId = props
+function ProfilBearbeiten() {
     const [name, setName] = useState("")
     const [passwort, setPasswort] = useState("")
-
+    const [nameBestaetigen, setNameBestaetigen] = useState("")
+    const [passwortBestaetigen, setPasswortBestaetigen] = useState("")
 
 
     function benutzerLoeschen() {
         if (window.confirm("Sind Sie sicher, dass Sie Ihren Account löschen möchten?")) {
             axios.delete(`http://localhost:8080/userloeschen`, {withCredentials: true})
                 .then(() => {
-                    redirect("/login")
+
                 })
-                .catch(() => {
-                    alert("Fehler beim Löschen des Accounts");
+                .catch((error) => {
+                    alert(error.response.data.message);
                 });
         }
     }
 
-  async  function neuenNamenUebernehmen(event) {
-        /*axios.post("http://localhost:8080/abc", {username : name}, {withCredentials: true})
-            .then(() => {
-
-            })
-            .catch(() => {
-                alert("Fehler");
-            });*/
+    async function neuenNamenUebernehmen(event) {
         event.preventDefault();
-        try {
-            const response = await axios.post("http://localhost:8080/abc", {
-                username: name,
+        if (name === nameBestaetigen) {
+            axios.post("http://localhost:8080/abc", {username: name}, {withCredentials: true})
+                .then(() => {
+                    alert("Name geändert")
 
-            }, {withCredentials: true});
-
-        } catch (error) {
-
+                })
+                .catch((error) => {
+                    alert(error.response.data.message);
+                });
+        } else {
+            alert("Eingaben stimmen nicht überein")
         }
     }
 
     function neuesPasswortUebernehmen() {
-        axios.post(`http://localhost:8080/passwortAendern`, {passwort: passwort}, {withCredentials: true})
-            .then(() => {
-                redirect("/home")
-            })
-            .catch(() => {
-                alert("Fehler");
-            });
+        if (passwort === passwortBestaetigen) {
+            axios.post("http://localhost:8080/passwortAendern", {passwort: passwort}, {withCredentials: true})
+                .then(() => {
+                    alert("Passwort geändert")
+                })
+                .catch((error) => {
+                    alert(error.response.data.message);
+                });
+        } else {
+            alert("Eingaben stimmen nicht überein")
+        }
     }
 
     return (
@@ -59,17 +59,15 @@ function ProfilBearbeiten(props) {
             <form onSubmit={neuenNamenUebernehmen}>
                 <label htmlFor="">neuer Benutzername: </label>
                 <br/>
-                <input type="name"
+                <input type="text"
                        value={name}
                        onChange={(e) => setName(e.target.value)}
-
                 />
                 <br/>
-                <label htmlFor="">Benutzername bestätigen</label>
-                <br/>
-                <input type="name"
-                       value={name}
-                       onChange={(e) => setName(e.target.value)}
+                <label htmlFor="">neuen Namen bestätigen: </label>
+                <input type="text"
+                       value={nameBestaetigen}
+                       onChange={(e) => setNameBestaetigen(e.target.value)}
                 />
                 <br/>
                 <br/>
@@ -83,14 +81,12 @@ function ProfilBearbeiten(props) {
                 <input type="password"
                        value={passwort}
                        onChange={(e) => setPasswort(e.target.value)}
-
                 />
                 <br/>
-                <label htmlFor="">Passwort bestätigen</label>
-                <br/>
-                <input type="password"
-                       value={passwort}
-                       onChange={(e) => setPasswort(e.target.value)}
+                <label htmlFor="">neues Passwort bestätigen</label>
+                <input type="text"
+                       value={passwortBestaetigen}
+                       onChange={(e) => setPasswortBestaetigen(e.target.value)}
                 />
                 <br/>
                 <br/>
