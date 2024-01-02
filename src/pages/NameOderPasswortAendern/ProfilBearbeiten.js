@@ -59,13 +59,14 @@ function ProfilBearbeiten() {
             <form onSubmit={neuenNamenUebernehmen}>
                 <label htmlFor="">neuer Benutzername: </label>
                 <br/>
-                <input type="text"
+                <input type="name"
                        value={name}
                        onChange={(e) => setName(e.target.value)}
                 />
                 <br/>
                 <label htmlFor="">neuen Namen bestätigen: </label>
-                <input type="text"
+                <br/>
+                <input type="name"
                        value={nameBestaetigen}
                        onChange={(e) => setNameBestaetigen(e.target.value)}
                 />
@@ -84,7 +85,8 @@ function ProfilBearbeiten() {
                 />
                 <br/>
                 <label htmlFor="">neues Passwort bestätigen</label>
-                <input type="text"
+                <br/>
+                <input type="password"
                        value={passwortBestaetigen}
                        onChange={(e) => setPasswortBestaetigen(e.target.value)}
                 />
