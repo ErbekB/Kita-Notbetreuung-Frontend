@@ -1,25 +1,25 @@
-/* Registrieren.css */
-
-/* Allgemeine Styles */
-.Register {
+.register-body {
     font-family: 'Arial', sans-serif;
     background-color: #f0f2f5;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-.Register form {
+.register-container{
     display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 50%;
-    padding: 20px;
+    flex-direction: column;
+    justify-content: space-around; /* Platzieren der Inhalte in der Mitte */
+    padding: 20px; /* Hier kannst du den Abstand anpassen */
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 50%; /* Anpassen der Breite des Login-Bereichs */
 }
 
 .title1 {
@@ -30,10 +30,10 @@
     text-align: center;
 }
 
-.Register input[type="text"],
-.Register input[type="password"],
-.Register input[type="number"] {
-    width: 280px;
+.register-container input[type="text"],
+.register-container input[type="password"],
+.register-container input[type="number"] {
+    width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -42,8 +42,8 @@
     margin-bottom: 10px;
 }
 
-.Register button {
-    width: 280px;
+.register-container button {
+    width: 100%;
     padding: 10px;
     background-color: #1877f2;
     color: #fff;
@@ -51,28 +51,17 @@
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    align-self: center;
+    box-sizing: border-box;
 }
 
-.Register button:hover {
+.register-container button:hover {
     background-color: #166fe5;
 }
 
-.Register .error {
+.register-container .error {
     color: #f00;
     margin-top: 10px;
 }
-
-.Bedienungsanleitung {
-    width: 50%;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: left;
-}
-
 
 .Bedienungsanleitung div {
     font-size: 16px;
