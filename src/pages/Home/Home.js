@@ -5,8 +5,8 @@ import axios from 'axios';
 function Home() {
     const [data, setData] = useState([]);
     const [admin, setAdmin] = useState();
-    const [kitaGruppe, setKitagruppe] = useState();
     const [notbetreuung, setNotbetreuung] = useState();
+
 
     useEffect(() => {
         return async function fetchData() {
@@ -15,8 +15,8 @@ function Home() {
                 .then((response) => {
                     setData(response.data.kindList);
                     setAdmin(response.data.admin);
-                    setKitagruppe(response.data.name);
                     setNotbetreuung(response.data.notbetreuung);
+
                 })
                 .catch((error) => {
                     console.error('Error fetching data:', error);
@@ -35,16 +35,6 @@ function Home() {
 
     data.sort((a, b) => a.counter - b.counter);
 
-    const getRowColor = (index) => {
-        if (index < 5) {
-            return 'green-row'; // CSS class for green rows
-        } else if (index < 10) {
-            return 'yellow-row'; // CSS class for yellow rows
-        } else {
-            return 'red-row'; // CSS class for red rows
-        }
-    };
-
     return (
         <div className="home-body">
             <div className="home-container">
@@ -54,21 +44,30 @@ function Home() {
                 </h2>
                 {admin ? <button onClick={toggleNotbetreuung}>Notbetreuung</button> : ''}
                 <br/>
-                <p>{kitaGruppe}</p>
                 <table className="kindergruppe-table">
                     <thead>
                     <tr>
                         <th className="kind">Name</th>
                         <th className="kind">Nachname</th>
-                        <th className="teilnahmen">Teilnahme</th>
+                        <th className="teilnahmen">Teilnahme/n</th>
+                        <th className="punkt"></th>
                     </tr>
                     </thead>
                     <tbody>
                     {data.map((kind, index) => (
-                        <tr key={index} className={getRowColor(index)}>
+                        <tr key={index}>
                             <td className="kind">{kind.vorname}</td>
                             <td className="kind">{kind.nachname}</td>
                             <td className="teilnahmen">{kind.counter}</td>
+                            {index < 5 && (
+                            <td className="punkt">🟢</td>
+                            )}
+                            {index >= 5 && index < 8 &&(
+                                <td className="punkt">🟡</td>
+                            )}
+                            {index >= 8 && (
+                                <td className="punkt">🔴</td>
+                            )}
                         </tr>
                     ))}
                     </tbody>

@@ -5,6 +5,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 93vh;
+
 }
 .home-container {
     background-color: white;
@@ -59,16 +61,4 @@ table th,
 table td {
     padding: 8px;
     text-align: center;
-}
-
-tbody tr:nth-child(-n+5) {
-    background-color: #a1eaae !important; /* Grüne Farbe für die ersten 5 Zeilen */
-}
-
-tbody tr:nth-child(n+6):nth-child(-n+10) {
-    background-color: #fffacd !important; /* Gelbe Farbe für die nächsten 5 Zeilen */
-}
-
-tbody tr:nth-last-child(-n+5) {
-    background-color: #f7b7b7 !important; /* Rote Farbe für die letzten 5 Zeilen */
 }

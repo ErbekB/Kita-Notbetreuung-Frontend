@@ -9,6 +9,8 @@ function Header() {
     const navigate = useNavigate();
     const location = useLocation();
     const [notbetreuung, setNotbetreuung] = useState(false)
+    const [kitaName, setKitaName] = useState()
+    const [kitaGruppenName, setKitaGruppenName] = useState()
 
     useEffect(() => {
         const datenAbrufen = async () => {
@@ -17,6 +19,8 @@ function Header() {
                 setDaten(response.data);
                 console.log(response.data)
                 setNotbetreuung(response.data.notbetreuung)
+                setKitaName(response.data.kitaName);
+                setKitaGruppenName(response.data.kitaGruppeName);
             } catch (error) {
                 console.error("Fehler beim Laden der Daten:", error);
             }
@@ -41,9 +45,9 @@ function Header() {
     };
 
     return (
-        <div className={"header-container"}>
+        <div className="header-container">
             <header>
-                <h2>Kitaorganisation</h2>
+                <h2>{kitaName}: {kitaGruppenName}</h2>
                 <div className="navCenter">
                     <div className="navButtons">
                         <Link to="/">
