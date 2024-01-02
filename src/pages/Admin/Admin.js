@@ -9,7 +9,7 @@ function Admin() {
     const [neuesKindNachnameEltern, setNeuesKindNachnameEltern] = useState("");
     const [neuesKindVorname, setNeuesKindVorname] = useState("");
     const [neuesKindNachname, setNeuesKindNachname] = useState("");
-    const [selectedParentId, setSelectedParentId] = useState("");
+    const [userID, setUserID] = useState("");
 
     useEffect(() => {
         elternAbrufen();
@@ -55,11 +55,11 @@ function Admin() {
     }
 
     function kindZuElternHinzufuegen() {
-        if (!selectedParentId || !neuesKindVorname || !neuesKindNachname) {
+        if (!userID || !neuesKindVorname || !neuesKindNachname) {
             alert("Bitte wählen Sie einen Elternteil und geben Sie Vor- und Nachnamen des Kindes ein");
             return;
         }
-        axios.post(`http://localhost:8080/admin/eltern/${selectedParentId}`, {
+        axios.post(`http://localhost:8080/admin/eltern/${userID}`, {
             vorname: neuesKindVorname,
             nachname: neuesKindNachname
         }, {withCredentials: true})
@@ -139,7 +139,7 @@ function Admin() {
                 <div className="admin-section">
                     <h2>Kind zu Elternteil hinzufügen</h2>
                     <div>
-                        <select onChange={(e) => setSelectedParentId(e.target.value)} value={selectedParentId}>
+                        <select onChange={(e) => setUserID(e.target.value)} value={userID}>
                             <option value="">Elternteil auswählen</option>
                             {elternListe.map((elternteil) => (
                                 <option key={elternteil.elternId}
