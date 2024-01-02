@@ -5,6 +5,7 @@ import "./Notfallbetreuung.css"
 function ListeDerKinderDerGruppe() {
     const [data, setData] = useState([]);
     const [id, setId] = useState(0);
+    const [status, setStatus] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -12,6 +13,8 @@ function ListeDerKinderDerGruppe() {
                 const response = await axios.get('http://localhost:8080/notfall', {withCredentials: true});
                 setId(response.data.userId);
                 setData(response.data.kinder);
+                console.log(response.data.notbetreuung)
+                setStatus(response.data.notbetreuung)
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -59,85 +62,102 @@ function ListeDerKinderDerGruppe() {
     // Berechnen, wie viele Kinder den Button angezeigt bekommen
     const maxAnzeigeButtons = 5 - teilnehmendeKinder.length;
     data.sort((a, b) => a.counter - b.counter);
-
+    console.log(status)
 
     return (
-        <div className="kindergruppe-body">
-        <div className="kindergruppe-container">
-            <h1 className="kindergruppe-title">Notbetreuung</h1>
+        <div>{status === true && (
+            <div>
+                <div className="kindergruppe-body">
+                    <div className="kindergruppe-container">
+                        <h1 className="kindergruppe-title">Notbetreuung</h1>
 
-            <div className="kindergruppe-section">
-                <h2 className="kindergruppe-section-title">An Notbetreuung teilnehmend:</h2>
-                <table className="kindergruppe-table">
-                    <thead>
-                    {teilnehmendeKinder.length > 0 && (
-                        <tr>
-                            <th className="kind">Kind</th>
-                            <th className="teilnahmen">Teilnahmen</th>
-                            <th className="aktion">Aktion</th>
-                        </tr>
-                    )}
-                    </thead>
-                    <tbody>
-                    {teilnehmendeKinder.map((kind, index) => (
-                        <tr key={index}>
-                            <td className="kind">{kind.vorname} {kind.nachname}</td>
-                            <td className="teilnahmen">{kind.counter}</td>
-                            <td className="aktion">
-                                <button className="button button-danger" onClick={() => nichtTeilnehmen(kind.id)}>Teilnahme zurückziehen</button>
-                            </td>
-                        </tr>
-                    ))}
-                    {teilnehmendeKinder.length === 0 && (
-                        <tr>
-                            <td colSpan="3" className="no-kinder-message">Es nehmen keine Kinder an der Notbetreuung teil.</td>
-                        </tr>
-                    )}
-                    </tbody>
-                </table>
-            </div>
+                        <div className="kindergruppe-section">
+                            <h2 className="kindergruppe-section-title">An Notbetreuung teilnehmend:</h2>
+                            <table className="kindergruppe-table">
+                                <thead>
+                                {teilnehmendeKinder.length > 0 && (
+                                    <tr>
+                                        <th className="kind">Kind</th>
+                                        <th className="teilnahmen">Teilnahmen</th>
+                                        <th className="aktion">Aktion</th>
+                                    </tr>
+                                )}
+                                </thead>
+                                <tbody>
+                                {teilnehmendeKinder.map((kind, index) => (
+                                    <tr key={index}>
+                                        <td className="kind">{kind.vorname} {kind.nachname}</td>
+                                        <td className="teilnahmen">{kind.counter}</td>
+                                        <td className="aktion">
+                                            <button className="button button-danger"
+                                                    onClick={() => nichtTeilnehmen(kind.id)}>Teilnahme zurückziehen
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                                {teilnehmendeKinder.length === 0 && (
+                                    <tr>
+                                        <td colSpan="3" className="no-kinder-message">Es nehmen keine Kinder an der
+                                            Notbetreuung teil.
+                                        </td>
+                                    </tr>
+                                )}
+                                </tbody>
+                            </table>
+                        </div>
 
-            <div className="kindergruppe-section">
-                <h2 className="kindergruppe-section-title">Kinder der Gruppe:</h2>
-                <table className="kindergruppe-table">
-                    <thead>
-                    {nichtTeilnehmendeKinder.length > 0 && (
-                        <tr>
-                            <th className="kind">Kind</th>
-                            <th className="teilnahmen">Bisherige Teilnahmen</th>
-                            <th className="aktion">Aktion</th>
-                        </tr>
-                    )}
-                    </thead>
-                    <tbody>
-                    {nichtTeilnehmendeKinder.map((kind, index) => (
-                        kind.notbetreuungNichtNotwendig === false &&
-                        <tr key={kind.id}>
-                            <td className="kind">{kind.vorname} {kind.nachname}</td>
-                            <td className="teilnahmen">{kind.counter}</td>
-                            <td className="aktion">
-                                {index < maxAnzeigeButtons && id === kind.id && (
-                                    <button className="button" onClick={() => notbetreuungTeilnehmen(kind.id)}>Teilnehmen</button>
+                        <div className="kindergruppe-section">
+                            <h2 className="kindergruppe-section-title">Kinder der Gruppe:</h2>
+                            <table className="kindergruppe-table">
+                                <thead>
+                                {nichtTeilnehmendeKinder.length > 0 && (
+                                    <tr>
+                                        <th className="kind">Kind</th>
+                                        <th className="teilnahmen">Bisherige Teilnahmen</th>
+                                        <th className="aktion">Aktion</th>
+                                    </tr>
                                 )}
-                                {id === kind.id && (
-                                    <button className="button button-danger" onClick={() => teilnahmeAendern(kind.id)}>Nicht teilnehmen</button>
+                                </thead>
+                                <tbody>
+                                {nichtTeilnehmendeKinder.map((kind, index) => (
+                                    kind.notbetreuungNichtNotwendig === false &&
+                                    <tr key={kind.id}>
+                                        <td className="kind">{kind.vorname} {kind.nachname}</td>
+                                        <td className="teilnahmen">{kind.counter}</td>
+                                        <td className="aktion">
+                                            {index < maxAnzeigeButtons && id === kind.id && (
+                                                <button className="button"
+                                                        onClick={() => notbetreuungTeilnehmen(kind.id)}>Teilnehmen</button>
+                                            )}
+                                            {id === kind.id && (
+                                                <button className="button button-danger"
+                                                        onClick={() => teilnahmeAendern(kind.id)}>Nicht
+                                                    teilnehmen</button>
+                                            )}
+                                        </td>
+                                    </tr>
+                                ))}
+                                {nichtTeilnehmendeKinder.length === 0 && (
+                                    <tr>
+                                        <td colSpan="3" className="no-kinder-message">Es sind keine Kinder in dieser
+                                            Gruppe.
+                                        </td>
+                                    </tr>
                                 )}
-                            </td>
-                        </tr>
-                    ))}
-                    {nichtTeilnehmendeKinder.length === 0 && (
-                        <tr>
-                            <td colSpan="3" className="no-kinder-message">Es sind keine Kinder in dieser Gruppe.</td>
-                        </tr>
-                    )}
-                    </tbody>
-                </table>
-            </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>)}
+            {status === false && (
+                <div>
+                    <br/>
+                    <br/>
+                    <h2>Heute findet keine Notbetreuung statt</h2>
+                </div>)}
+
         </div>
-        </div>
-    );
+    )
 }
-
-
-
 export default ListeDerKinderDerGruppe;

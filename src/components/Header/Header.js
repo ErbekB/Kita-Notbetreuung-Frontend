@@ -8,7 +8,7 @@ function Header() {
     const [aktivesMenue, setAktivesMenue] = useState("home");
     const navigate = useNavigate();
     const location = useLocation();
-    const [notbetreuung, setNotbetreuung] = useState(false)
+
 
     useEffect(() => {
         const datenAbrufen = async () => {
@@ -16,7 +16,7 @@ function Header() {
                 const response = await axios.get("http://localhost:8080/index", {withCredentials : true});
                 setDaten(response.data);
                 console.log(response.data)
-                setNotbetreuung(response.data.notbetreuung)
+
             } catch (error) {
                 console.error("Fehler beim Laden der Daten:", error);
             }
