@@ -24,18 +24,20 @@
     text-align: center;
 }
 
-.calendar-container {
-    margin-bottom: 20px;
+.red-text {
+    color: red;
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+.standard-text {
+    margin-bottom: 5px;
 }
 
 table {
     border-collapse: collapse;
     margin-top: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-table tr:nth-child(even) {
-    background-color: #f7f7f7;
 }
 
 .kindergruppe-table th.kind,
@@ -53,10 +55,20 @@ table tr:nth-child(even) {
     width: 33%;
 }
 
-
 table th,
 table td {
     padding: 8px;
-    border-bottom: 1px solid #eaeaea;
     text-align: center;
+}
+
+tbody tr:nth-child(-n+5) {
+    background-color: #a1eaae !important; /* Grüne Farbe für die ersten 5 Zeilen */
+}
+
+tbody tr:nth-child(n+6):nth-child(-n+10) {
+    background-color: #fffacd !important; /* Gelbe Farbe für die nächsten 5 Zeilen */
+}
+
+tbody tr:nth-last-child(-n+5) {
+    background-color: #f7b7b7 !important; /* Rote Farbe für die letzten 5 Zeilen */
 }
