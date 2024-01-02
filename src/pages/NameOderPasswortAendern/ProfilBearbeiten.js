@@ -15,8 +15,8 @@ function ProfilBearbeiten() {
                 .then(() => {
 
                 })
-                .catch((error) => {
-                    alert(error.response.data.message);
+                .catch(() => {
+                    alert("Admin kann sich nicht selber löschen. Bitte kontaktiere den Support");
                 });
         }
     }
