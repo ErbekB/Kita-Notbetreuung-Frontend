@@ -4,7 +4,9 @@
     background-color: #f0f2f5;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    min-height: 93vh;
+
 }
 .home-container {
     background-color: white;
@@ -24,18 +26,20 @@
     text-align: center;
 }
 
-.calendar-container {
-    margin-bottom: 20px;
+.red-text {
+    color: red;
+    font-size: 36px;
+    margin-bottom: 5px;
+}
+
+.standard-text {
+    margin-bottom: 5px;
 }
 
 table {
     border-collapse: collapse;
     margin-top: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-table tr:nth-child(even) {
-    background-color: #f7f7f7;
 }
 
 .kindergruppe-table th.kind,
@@ -53,10 +57,8 @@ table tr:nth-child(even) {
     width: 33%;
 }
 
-
 table th,
 table td {
     padding: 8px;
-    border-bottom: 1px solid #eaeaea;
     text-align: center;
 }
