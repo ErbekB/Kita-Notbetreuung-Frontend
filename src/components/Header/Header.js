@@ -8,6 +8,7 @@ function Header() {
     const [aktivesMenue, setAktivesMenue] = useState("home");
     const navigate = useNavigate();
     const location = useLocation();
+
     const [notbetreuung, setNotbetreuung] = useState(false)
     const [kitaName, setKitaName] = useState()
     const [kitaGruppenName, setKitaGruppenName] = useState()
@@ -56,10 +57,16 @@ function Header() {
                                 <i className="fas fa-home"></i>
                             </button>
                         </Link>
-                        <Link to={notbetreuung === true ? "/Notfallbetreuung" : "/"}>
+                        <Link to="/Notfallbetreuung">
                             <button className={`navItem ${aktivesMenue === "notbetreuung" ? "active" : ""}`}
                                     onClick={() => setAktivesMenue("notbetreuung")} data-label="Notbetreuung">
                                 <i className="fas fa-briefcase-medical"></i>
+                            </button>
+                        </Link>
+                        <Link to="/ProfilBearbeiten">
+                            <button className={`navItem ${aktivesMenue === "nameOderPasswortAendern" ? "active" : ""}`}
+                                    onClick={() => setAktivesMenue("nameOderPasswortAendern")} data-label="Profil verwalten">
+                                <i class="fas fa-solid fa-user"></i>
                             </button>
                         </Link>
                         {daten.admin && (

@@ -10,6 +10,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Authenticator from "./pages/Login/Authenticator";
 import Registrieren from "./pages/Registrieren/Registrieren";
+import ProfilBearbeiten from "./pages/NameOderPasswortAendern/ProfilBearbeiten";
 
 function App() {
     const [istEingeloggt, setIstEingeloggt] = useState(false);
@@ -25,6 +26,7 @@ function App() {
                     <Route path="/admin" element={<Admin/>}/>
                     <Route path="/login" element={<Login istEingeloggt={istEingeloggt} setIstEingeloggt={setIstEingeloggt}/>}/>
                     <Route path="/registrieren" element={<Registrieren istEingeloggt={istEingeloggt}/>}/>
+                    <Route path="/profilBearbeiten" element={<ProfilBearbeiten />}/>
                 </Routes>
                 {istEingeloggt && <Footer/>}
             </Router>
