@@ -1,0 +1,21 @@
+.header-container {
+    background-color: white; /* Hintergrundfarbe des Headers */
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Zentrieren des Inhalts im Header */
+    padding: 5px 10px;
+    color: black;
+    position: relative; /* Position relativ, damit absolute Elemente sich darauf beziehen */
+    max-width: 1300px; /* Maximale Breite des Headers */
+    margin: 0 auto; /* Zentrieren des Headers */
+}
+
+header p {
+    position: absolute;
+    left: 10px; /* Positionierung am linken Rand */
+    margin: 0;
+    font-size: 18px;
+    color: #1778F2; /* Facebook-Blau */
+}
