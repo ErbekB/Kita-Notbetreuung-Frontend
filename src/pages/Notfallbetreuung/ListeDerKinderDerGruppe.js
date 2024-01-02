@@ -23,7 +23,7 @@ function ListeDerKinderDerGruppe() {
     }, []);
 
     function notbetreuungTeilnehmen(kindId) {
-        axios.post(`http://localhost:8080/notfall/${kindId}`)
+        axios.post(`http://localhost:8080/notfall/${kindId}`, {}, {withCredentials:true})
             .then(response => {
                 const updatedData = data.map(kind =>
                     kind.id === kindId ? {...kind, teilnahmeNotbetreuung: true, counter: kind.counter + 1} : kind
@@ -34,7 +34,7 @@ function ListeDerKinderDerGruppe() {
     }
 
     function nichtTeilnehmen(kindId) {
-        axios.post(`http://localhost:8080/notfall/aendern/${kindId}`)
+        axios.post(`http://localhost:8080/notfall/aendern/${kindId}`, {}, {withCredentials:true})
             .then(response => {
                 const updatedData = data.map(kind =>
                     kind.id === kindId ? {...kind, teilnahmeNotbetreuung: false, counter: kind.counter - 1} : kind
@@ -47,7 +47,7 @@ function ListeDerKinderDerGruppe() {
     function teilnahmeAusschliessen(kindId) {
         const bestaetigen = window.confirm("Bitte bestätige die nicht-Teilnahme deines Kindes. Eine Änderung ist dannach nur noch durch den Administrator möglich");
         if (bestaetigen) {
-            axios.post(`http://localhost:8080/notfall/teilnahme/${kindId}`)
+            axios.post(`http://localhost:8080/notfall/teilnahme/${kindId}` , {}, {withCredentials:true})
                 .then(response => {
                     const temporalData = data.filter(kind => kind.id !== kindId);
                     setData(temporalData);
