@@ -9,7 +9,6 @@ function Header() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [notbetreuung, setNotbetreuung] = useState(false)
     const [kitaName, setKitaName] = useState()
     const [kitaGruppenName, setKitaGruppenName] = useState()
 
@@ -19,7 +18,6 @@ function Header() {
                 const response = await axios.get("http://localhost:8080/index", {withCredentials : true});
                 setDaten(response.data);
                 console.log(response.data)
-                setNotbetreuung(response.data.notbetreuung)
                 setKitaName(response.data.kitaName);
                 setKitaGruppenName(response.data.kitaGruppeName);
             } catch (error) {
@@ -31,7 +29,8 @@ function Header() {
 
         const pfad = location.pathname;
         const aktuellesMenue = pfad.includes("/Admin") ? "admin" :
-            pfad.includes("/Notfallbetreuung") ? "notbetreuung" : "home";
+            pfad.includes("/Notfallbetreuung") ? "notbetreuung" :
+            pfad.includes("/ProfilBearbeiten") ? "ProfilBearbeiten" : "home";
         setAktivesMenue(aktuellesMenue);
     }, [location.pathname]);
 
@@ -64,9 +63,9 @@ function Header() {
                             </button>
                         </Link>
                         <Link to="/ProfilBearbeiten">
-                            <button className={`navItem ${aktivesMenue === "nameOderPasswortAendern" ? "active" : ""}`}
-                                    onClick={() => setAktivesMenue("nameOderPasswortAendern")} data-label="Profil verwalten">
-                                <i class="fas fa-solid fa-user"></i>
+                            <button className={`navItem ${aktivesMenue === "ProfilBearbeiten" ? "active" : ""}`}
+                                    onClick={() => setAktivesMenue("ProfilBearbeiten")} data-label="Profil verwalten">
+                                <i className="fas fa-solid fa-user"></i>
                             </button>
                         </Link>
                         {daten.admin && (
