@@ -7,22 +7,22 @@ function ListeDerKinderDerGruppe() {
     const [userId, setUserId] = useState(0);
     const [status, setStatus] = useState(false)
 
+
     useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await axios.get('http://localhost:8080/notfall', {withCredentials: true})
+                    .then((response) => {
+                        setUserId(response.data.userId);
+                        setData(response.data.kinder);
+                        setStatus(response.data.statusNotbetreuung);
+
+                    })
+            } catch (error) {
+            }
+        }
         fetchData();
     }, []);
-
-    function fetchData() {
-        axios.get('http://localhost:8080/notfall', {withCredentials: true})
-            .then((response) => {
-                setUserId(response.data.userId);
-                setData(response.data.kinder);
-                setStatus(response.data.statusNotbetreuung);
-
-            })
-            .catch((error) => {
-                alert(error);
-            });
-    }
 
 
     function notbetreuungTeilnehmen(kindId) {
