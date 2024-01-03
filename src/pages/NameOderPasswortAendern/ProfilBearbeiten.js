@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from "axios";
-import {redirect} from "react-router-dom";
+import './ProfilBearbeiten.css'
 
 function ProfilBearbeiten() {
     const [name, setName] = useState("")
@@ -52,52 +52,45 @@ function ProfilBearbeiten() {
     }
 
     return (
-        <div>
-            <h2>Profil verwalten</h2>
-
-            <br/>
-            <form onSubmit={neuenNamenUebernehmen}>
-                <label htmlFor="">neuer Benutzername: </label>
-                <br/>
-                <input type="name"
-                       value={name}
-                       onChange={(e) => setName(e.target.value)}
-                />
-                <br/>
-                <label htmlFor="">neuen Namen bestätigen: </label>
-                <br/>
-                <input type="name"
-                       value={nameBestaetigen}
-                       onChange={(e) => setNameBestaetigen(e.target.value)}
-                />
-                <br/>
-                <br/>
-                <button type="submit">bestätigen</button>
-
-            </form>
-            <br/>
-            <form onSubmit={neuesPasswortUebernehmen}>
-                <label htmlFor="">neues Passwort: </label>
-                <br/>
-                <input type="password"
-                       value={passwort}
-                       onChange={(e) => setPasswort(e.target.value)}
-                />
-                <br/>
-                <label htmlFor="">neues Passwort bestätigen</label>
-                <br/>
-                <input type="password"
-                       value={passwortBestaetigen}
-                       onChange={(e) => setPasswortBestaetigen(e.target.value)}
-                />
+        <div className="profil-body">
+            <div className="profil-container">
+                <h1 className="profil-title">Profil verwalten</h1>
+                <h2 className="profil-title">Benutzername ändern</h2>
+                <form onSubmit={neuenNamenUebernehmen}>
+                    <input type="name"
+                           value={name}
+                           onChange={(e) => setName(e.target.value)}
+                           placeholder="Neuer Benutzername"
+                    />
+                    <input type="name"
+                           value={nameBestaetigen}
+                           onChange={(e) => setNameBestaetigen(e.target.value)}
+                           placeholder="Neuen Benutzernamen bestätigen"
+                    />
+                    <button type="submit">bestätigen</button>
+                </form>
                 <br/>
                 <br/>
-                <button type="submit">bestätigen</button>
-
-            </form>
-            <hr/>
-            <br/>
-            <button onClick={benutzerLoeschen}>Benutzer löschen</button>
+                <br/>
+                <h2 className="profil-title">Passwort ändern</h2>
+                <form onSubmit={neuesPasswortUebernehmen}>
+                    <input type="password"
+                           value={passwort}
+                           onChange={(e) => setPasswort(e.target.value)}
+                           placeholder="Neues Passwort"
+                    />
+                    <input type="password"
+                           value={passwortBestaetigen}
+                           onChange={(e) => setPasswortBestaetigen(e.target.value)}
+                           placeholder="Neues Passwort bestätigen"
+                    />
+                    <button type="submit">bestätigen</button>
+                </form>
+            </div>
+            <div className="profil-container">
+            <h2 className="profil-title">Benutzer löschen</h2>
+                <button className="button button-danger" onClick={benutzerLoeschen}>Benutzer löschen</button>
+            </div>
         </div>
     )
         ;
