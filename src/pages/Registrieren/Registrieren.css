@@ -63,14 +63,14 @@
     margin-top: 10px;
 }
 
-.Bedienungsanleitung div {
+.register-container div {
     font-size: 16px;
     color: #1c1e21;
     text-align: left;
     margin-bottom: 10px;
 }
 
-.Bedienungsanleitung .title2 {
+.register-container .title2 {
     font-weight: bold;
     color: #1877f2;
     font-size: 36px;

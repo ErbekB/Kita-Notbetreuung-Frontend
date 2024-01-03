@@ -23,7 +23,7 @@ function ListeDerKinderDerGruppe() {
     }, []);
 
     function notbetreuungTeilnehmen(kindId) {
-        axios.post(`http://localhost:8080/notfall/${kindId}`, {}, {withCredentials:true})
+        axios.post(`http://localhost:8080/notfall/${kindId}`, {}, {withCredentials: true})
             .then(response => {
                 const updatedData = data.map(kind =>
                     kind.id === kindId ? {...kind, teilnahmeNotbetreuung: true, counter: kind.counter + 1} : kind
@@ -34,7 +34,7 @@ function ListeDerKinderDerGruppe() {
     }
 
     function nichtTeilnehmen(kindId) {
-        axios.post(`http://localhost:8080/notfall/aendern/${kindId}`, {}, {withCredentials:true})
+        axios.post(`http://localhost:8080/notfall/aendern/${kindId}`, {}, {withCredentials: true})
             .then(response => {
                 const updatedData = data.map(kind =>
                     kind.id === kindId ? {...kind, teilnahmeNotbetreuung: false, counter: kind.counter - 1} : kind
@@ -47,7 +47,7 @@ function ListeDerKinderDerGruppe() {
     function teilnahmeAusschliessen(kindId) {
         const bestaetigen = window.confirm("Bitte bestätige die nicht-Teilnahme deines Kindes. Eine Änderung ist dannach nur noch durch den Administrator möglich");
         if (bestaetigen) {
-            axios.post(`http://localhost:8080/notfall/teilnahme/${kindId}` , {}, {withCredentials:true})
+            axios.post(`http://localhost:8080/notfall/teilnahme/${kindId}`, {}, {withCredentials: true})
                 .then(response => {
                     const temporalData = data.filter(kind => kind.id !== kindId);
                     setData(temporalData);
@@ -70,7 +70,6 @@ function ListeDerKinderDerGruppe() {
                 <div className="kindergruppe-body">
                     <div className="kindergruppe-container">
                         <h1 className="kindergruppe-title">Notbetreuung</h1>
-
                         <div className="kindergruppe-section">
                             <h2 className="kindergruppe-section-title">An Notbetreuung teilnehmend:</h2>
                             <table className="kindergruppe-table">
@@ -150,13 +149,14 @@ function ListeDerKinderDerGruppe() {
                         </div>
                     </div>
                 </div>
-
             </div>)}
-            {status ===false &&
-            <div>
-                <br/>
-                <h2>Heute findet keine Notbetreuung statt</h2>
-            </div>}
+            {status === false &&
+                <div className="kindergruppe-body">
+                    <div className="kindergruppe-container">
+                        <h1 className="title">Heute findet keine Notbetreuung statt</h1>
+                    </div>
+                </div>
+            }
         </div>)
 }
 

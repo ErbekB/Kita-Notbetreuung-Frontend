@@ -130,7 +130,6 @@ function Register({istEingeloggt}) {
             </div>
             <br/>
             <div className="register-container">
-                <form className="Bedienungsanleitung">
                     <div className="title2">
                         Bedienungsanleitung
                     </div>
@@ -155,7 +154,6 @@ function Register({istEingeloggt}) {
                             5. Meldet euch mit den Namen eurer Kinder an.
                         </div>
                     </div>
-                </form>
             </div>
         </div>
     );
