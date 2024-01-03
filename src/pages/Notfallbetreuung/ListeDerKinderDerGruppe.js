@@ -73,7 +73,6 @@ function ListeDerKinderDerGruppe() {
                 <div className="kindergruppe-body">
                     <div className="kindergruppe-container">
                         <h1 className="kindergruppe-title">Notbetreuung</h1>
-
                         <div className="kindergruppe-section">
                             <h2 className="kindergruppe-section-title">An Notbetreuung teilnehmend:</h2>
                             <table className="kindergruppe-table">
@@ -153,13 +152,15 @@ function ListeDerKinderDerGruppe() {
                         </div>
                     </div>
                 </div>
-
             </div>)}
             {status === false &&
-                <div>
-                    <br/>
-                    <h2>Heute findet keine Notbetreuung statt</h2>
-                </div>}
+                <div className="kindergruppe-body">
+                    <div className="kindergruppe-container">
+                        <h1 className="title">Heute findet keine Notbetreuung statt</h1>
+                    </div>
+                </div>
+            }
+
         </div>)
 }
 
