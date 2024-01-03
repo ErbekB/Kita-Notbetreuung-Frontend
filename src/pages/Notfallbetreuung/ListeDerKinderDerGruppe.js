@@ -66,6 +66,15 @@ function ListeDerKinderDerGruppe() {
     const maxAnzeigeButtons = 5 - teilnehmendeKinder.length;
     data.sort((a, b) => a.counter - b.counter);
 
+    const verlaufSpeichern = async () => {
+        try {
+            await axios.post('http://localhost:8080/verlauf/speichern', '', {withCredentials: true});
+
+        } catch (error) {
+            console.error('Fehler speichern des Verlaufs', error);
+        }
+    };
+
 
     return (
         <div>{status === true && (
@@ -75,6 +84,7 @@ function ListeDerKinderDerGruppe() {
                         <h1 className="kindergruppe-title">Notbetreuung</h1>
                         <div className="kindergruppe-section">
                             <h2 className="kindergruppe-section-title">An Notbetreuung teilnehmend:</h2>
+                            <button onClick={verlaufSpeichern}>Notbetreuung festlegen</button>
                             <table className="kindergruppe-table">
                                 <thead>
                                 {teilnehmendeKinder.length > 0 && (
