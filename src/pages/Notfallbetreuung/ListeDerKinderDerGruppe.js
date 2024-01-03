@@ -12,18 +12,26 @@ function ListeDerKinderDerGruppe() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://localhost:8080/notfall', {withCredentials: true})
-                    .then((response) => {
-                        setUserId(response.data.userId);
-                        setData(response.data.kinder);
-                        setStatus(response.data.statusNotbetreuung);
-
-                    })
+                const response = await axios.get('http://localhost:8080/notfall', {withCredentials: true});
+                setUserId(response.data.userId);
+                setData(response.data.kinder);
+                setStatus(response.data.statusNotbetreuung);
             } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        async function statusAbstimmungNotbetreuung() {
+            try {
+                const response = await axios.get('http://localhost:8080/notfall/notbetreuung', {withCredentials: true});
+                setAbstimmungAbgeschlossen(response.data.abstimmungAbgeschlossen);
+            } catch (error) {
+                console.error('Error fetching abstimmung status:', error);
             }
         }
 
         fetchData();
+        statusAbstimmungNotbetreuung();
     }, []);
 
 
@@ -38,16 +46,16 @@ function ListeDerKinderDerGruppe() {
             .catch(error => console.error('Error', error));
     }
 
-    function nichtTeilnehmen(kindId) {
-        axios.post(`http://localhost:8080/notfall/aendern/${kindId}`, {}, {withCredentials: true})
-            .then(response => {
-                const updatedData = data.map(kind =>
-                    kind.id === kindId ? {...kind, teilnahmeNotbetreuung: false, counter: kind.counter - 1} : kind
-                );
-                setData(updatedData);
-            })
-            .catch(error => console.error('Error', error));
-    }
+    // function nichtTeilnehmen(kindId) {
+    //     axios.post(`http://localhost:8080/notfall/aendern/${kindId}`, {}, {withCredentials: true})
+    //         .then(response => {
+    //             const updatedData = data.map(kind =>
+    //                 kind.id === kindId ? {...kind, teilnahmeNotbetreuung: false, counter: kind.counter - 1} : kind
+    //             );
+    //             setData(updatedData);
+    //         })
+    //         .catch(error => console.error('Error', error));
+    // }
 
     function teilnahmeAusschliessen(kindId) {
         const bestaetigen = window.confirm("Bitte bestätige die nicht-Teilnahme deines Kindes. Eine Änderung ist dannach nur noch durch den Administrator möglich");
@@ -61,13 +69,16 @@ function ListeDerKinderDerGruppe() {
         }
     }
 
-    const abstimmungAbschließen = async () => {
-        try {
-            setAbstimmungAbgeschlossen(true);
-        } catch (error) {
-            console.error('Fehler beim Senden der Abstimmung', error);
-        }
-    }
+    const abstimmungAbschließen = () => {
+        axios.post('http://localhost:8080/notfall/notbetreuung', {}, {withCredentials: true})
+            .then(response => {
+                setAbstimmungAbgeschlossen(true);
+            })
+            .catch(error => {
+                console.error('Fehler beim Senden der Abstimmung', error);
+            });
+    };
+
 
     const teilnehmendeKinder = data.filter(kind => kind.teilnahmeNotbetreuung);
     const nichtTeilnehmendeKinder = data.filter(kind => !kind.teilnahmeNotbetreuung);
