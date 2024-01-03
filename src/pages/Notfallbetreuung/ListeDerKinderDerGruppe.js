@@ -6,22 +6,32 @@ function ListeDerKinderDerGruppe() {
     const [data, setData] = useState([]);
     const [userId, setUserId] = useState(0);
     const [status, setStatus] = useState(false)
+    const [abstimmungAbgeschlossen, setAbstimmungAbgeschlossen] = useState(false);
 
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://localhost:8080/notfall', {withCredentials: true})
-                    .then((response) => {
-                        setUserId(response.data.userId);
-                        setData(response.data.kinder);
-                        setStatus(response.data.statusNotbetreuung);
-
-                    })
+                const response = await axios.get('http://localhost:8080/notfall', {withCredentials: true});
+                setUserId(response.data.userId);
+                setData(response.data.kinder);
+                setStatus(response.data.statusNotbetreuung);
             } catch (error) {
+                console.error('Error fetching data:', error);
             }
         }
+
+        async function statusAbstimmungNotbetreuung() {
+            try {
+                const response = await axios.get('http://localhost:8080/notfall/notbetreuung', {withCredentials: true});
+                setAbstimmungAbgeschlossen(response.data.abstimmungAbgeschlossen);
+            } catch (error) {
+                console.error('Error fetching abstimmung status:', error);
+            }
+        }
+
         fetchData();
+        statusAbstimmungNotbetreuung();
     }, []);
 
 
@@ -36,16 +46,16 @@ function ListeDerKinderDerGruppe() {
             .catch(error => console.error('Error', error));
     }
 
-    function nichtTeilnehmen(kindId) {
-        axios.post(`http://localhost:8080/notfall/aendern/${kindId}`, {}, {withCredentials: true})
-            .then(response => {
-                const updatedData = data.map(kind =>
-                    kind.id === kindId ? {...kind, teilnahmeNotbetreuung: false, counter: kind.counter - 1} : kind
-                );
-                setData(updatedData);
-            })
-            .catch(error => console.error('Error', error));
-    }
+    // function nichtTeilnehmen(kindId) {
+    //     axios.post(`http://localhost:8080/notfall/aendern/${kindId}`, {}, {withCredentials: true})
+    //         .then(response => {
+    //             const updatedData = data.map(kind =>
+    //                 kind.id === kindId ? {...kind, teilnahmeNotbetreuung: false, counter: kind.counter - 1} : kind
+    //             );
+    //             setData(updatedData);
+    //         })
+    //         .catch(error => console.error('Error', error));
+    // }
 
     function teilnahmeAusschliessen(kindId) {
         const bestaetigen = window.confirm("Bitte bestätige die nicht-Teilnahme deines Kindes. Eine Änderung ist dannach nur noch durch den Administrator möglich");
@@ -58,6 +68,17 @@ function ListeDerKinderDerGruppe() {
                 .catch(error => console.error('Error', error));
         }
     }
+
+    const abstimmungAbschließen = () => {
+        axios.post('http://localhost:8080/notfall/notbetreuung', {}, {withCredentials: true})
+            .then(response => {
+                setAbstimmungAbgeschlossen(true);
+            })
+            .catch(error => {
+                console.error('Fehler beim Senden der Abstimmung', error);
+            });
+    };
+
 
     const teilnehmendeKinder = data.filter(kind => kind.teilnahmeNotbetreuung);
     const nichtTeilnehmendeKinder = data.filter(kind => !kind.teilnahmeNotbetreuung);
@@ -83,6 +104,16 @@ function ListeDerKinderDerGruppe() {
                     <div className="kindergruppe-container">
                         <h1 className="kindergruppe-title">Notbetreuung</h1>
                         <div className="kindergruppe-section">
+                            <div>
+                                {!abstimmungAbgeschlossen && (
+                                    <button onClick={abstimmungAbschließen}>Abstimmung für Notbetreuung
+                                        abschließen</button>
+                                )}
+
+                                {abstimmungAbgeschlossen && (
+                                    <div>Die Abstimmung für die heutige Notbetreuung ist abgeschlossen.</div>
+                                )}
+                            </div>
                             <h2 className="kindergruppe-section-title">An Notbetreuung teilnehmend:</h2>
                             <button onClick={verlaufSpeichern}>Notbetreuung festlegen</button>
                             <table className="kindergruppe-table">
@@ -101,9 +132,11 @@ function ListeDerKinderDerGruppe() {
                                         <td className="kind">{kind.vorname} {kind.nachname}</td>
                                         <td className="teilnahmen">{kind.counter}</td>
                                         <td className="aktion">
-                                            <button className="button button-danger"
-                                                    onClick={() => teilnahmeAusschliessen(kind.id)}>Teilnahme zurückziehen
-                                            </button>
+                                            {!abstimmungAbgeschlossen && (
+                                                <button className="button button-danger"
+                                                        onClick={() => teilnahmeAusschliessen(kind.id)}>Teilnahme
+                                                    zurückziehen
+                                                </button>)}
                                         </td>
                                     </tr>
                                 ))}
@@ -138,14 +171,18 @@ function ListeDerKinderDerGruppe() {
                                         <td className="kind">{kind.vorname} {kind.nachname}</td>
                                         <td className="teilnahmen">{kind.counter}</td>
                                         <td className="aktion">
-                                            {index < maxAnzeigeButtons && userId === kind.elternId && (
-                                                <button className="button"
-                                                        onClick={() => notbetreuungTeilnehmen(kind.id)}>Teilnehmen</button>
-                                            )}
-                                            {userId === kind.elternId && (
-                                                <button className="button button-danger"
-                                                        onClick={() => teilnahmeAusschliessen(kind.id)}>Nicht
-                                                    teilnehmen</button>
+                                            {!abstimmungAbgeschlossen && (
+                                                <>
+                                                    {index < maxAnzeigeButtons && userId === kind.elternId && (
+                                                        <button className="button"
+                                                                onClick={() => notbetreuungTeilnehmen(kind.id)}>Teilnehmen</button>
+                                                    )}
+                                                    {userId === kind.elternId && (
+                                                        <button className="button button-danger"
+                                                                onClick={() => teilnahmeAusschliessen(kind.id)}>Nicht
+                                                            teilnehmen</button>
+                                                    )}
+                                                </>
                                             )}
                                         </td>
                                     </tr>
