@@ -10,7 +10,8 @@
 
 .admin-container {
     background-color: white;
-    width: 1300px;
+    width: 100%; /* Ändere die Breite auf 100% */
+    max-width: 1300px; /* Maximal zulässige Breite */
     margin: 20px auto;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -20,11 +21,6 @@
     color: #1778F2;
     text-align: center;
     margin-bottom: 0;
-    margin-top: 0;
-}
-
-.admin-labels {
-    width: 100%;
 }
 
 .admin-section {
@@ -63,7 +59,8 @@ table th {
 
 input[type="text"],
 select {
-    width: 1270px;
+    max-width: 1270px;
+    width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     border-radius: 4px;
