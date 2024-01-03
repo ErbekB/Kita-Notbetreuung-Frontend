@@ -6,6 +6,7 @@ function ListeDerKinderDerGruppe() {
     const [data, setData] = useState([]);
     const [userId, setUserId] = useState(0);
     const [status, setStatus] = useState(false)
+    const [abstimmungAbgeschlossen, setAbstimmungAbgeschlossen] = useState(false);
 
 
     useEffect(() => {
@@ -21,6 +22,7 @@ function ListeDerKinderDerGruppe() {
             } catch (error) {
             }
         }
+
         fetchData();
     }, []);
 
@@ -59,6 +61,14 @@ function ListeDerKinderDerGruppe() {
         }
     }
 
+    const abstimmungAbschließen = async () => {
+        try {
+            setAbstimmungAbgeschlossen(true);
+        } catch (error) {
+            console.error('Fehler beim Senden der Abstimmung', error);
+        }
+    }
+
     const teilnehmendeKinder = data.filter(kind => kind.teilnahmeNotbetreuung);
     const nichtTeilnehmendeKinder = data.filter(kind => !kind.teilnahmeNotbetreuung);
 
@@ -74,6 +84,16 @@ function ListeDerKinderDerGruppe() {
                     <div className="kindergruppe-container">
                         <h1 className="kindergruppe-title">Notbetreuung</h1>
                         <div className="kindergruppe-section">
+                            <div>
+                                {!abstimmungAbgeschlossen && (
+                                    <button onClick={abstimmungAbschließen}>Abstimmung für Notbetreuung
+                                        abschließen</button>
+                                )}
+
+                                {abstimmungAbgeschlossen && (
+                                    <div>Die Abstimmung für die heutige Notbetreuung ist abgeschlossen.</div>
+                                )}
+                            </div>
                             <h2 className="kindergruppe-section-title">An Notbetreuung teilnehmend:</h2>
                             <table className="kindergruppe-table">
                                 <thead>
@@ -91,9 +111,11 @@ function ListeDerKinderDerGruppe() {
                                         <td className="kind">{kind.vorname} {kind.nachname}</td>
                                         <td className="teilnahmen">{kind.counter}</td>
                                         <td className="aktion">
-                                            <button className="button button-danger"
-                                                    onClick={() => teilnahmeAusschliessen(kind.id)}>Teilnahme zurückziehen
-                                            </button>
+                                            {!abstimmungAbgeschlossen && (
+                                                <button className="button button-danger"
+                                                        onClick={() => teilnahmeAusschliessen(kind.id)}>Teilnahme
+                                                    zurückziehen
+                                                </button>)}
                                         </td>
                                     </tr>
                                 ))}
@@ -128,14 +150,18 @@ function ListeDerKinderDerGruppe() {
                                         <td className="kind">{kind.vorname} {kind.nachname}</td>
                                         <td className="teilnahmen">{kind.counter}</td>
                                         <td className="aktion">
-                                            {index < maxAnzeigeButtons && userId === kind.elternId && (
-                                                <button className="button"
-                                                        onClick={() => notbetreuungTeilnehmen(kind.id)}>Teilnehmen</button>
-                                            )}
-                                            {userId === kind.elternId && (
-                                                <button className="button button-danger"
-                                                        onClick={() => teilnahmeAusschliessen(kind.id)}>Nicht
-                                                    teilnehmen</button>
+                                            {!abstimmungAbgeschlossen && (
+                                                <>
+                                                    {index < maxAnzeigeButtons && userId === kind.elternId && (
+                                                        <button className="button"
+                                                                onClick={() => notbetreuungTeilnehmen(kind.id)}>Teilnehmen</button>
+                                                    )}
+                                                    {userId === kind.elternId && (
+                                                        <button className="button button-danger"
+                                                                onClick={() => teilnahmeAusschliessen(kind.id)}>Nicht
+                                                            teilnehmen</button>
+                                                    )}
+                                                </>
                                             )}
                                         </td>
                                     </tr>
