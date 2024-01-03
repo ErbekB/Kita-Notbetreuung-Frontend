@@ -6,6 +6,7 @@ function Home() {
     const [data, setData] = useState([]);
     const [admin, setAdmin] = useState();
     const [notbetreuung, setNotbetreuung] = useState();
+    const [verlauf, setVerlauf] = useState([]);
 
 
     useEffect(() => {
@@ -21,6 +22,15 @@ function Home() {
         }
 
         fetchData();
+
+        axios.get("http://localhost:8080/verlauf", {withCredentials: true})
+            .then(response => {
+                setVerlauf(response.data.verläufe.kinder);
+                console.log(verlauf)
+            })
+            .catch (error =>{
+            console.error('Error fetching data:', error);
+        })
     }, []);
 
 const toggleNotbetreuung = async () => {
@@ -33,6 +43,7 @@ const toggleNotbetreuung = async () => {
 };
 
 data.sort((a, b) => a.counter - b.counter);
+
 
 return (
     <div className="home-body">
@@ -71,6 +82,24 @@ return (
                 ))}
                 </tbody>
             </table>
+            <br/>
+            {verlauf && (
+            <table>
+                <thead>
+                <tr>
+                    <th className="datum">Datum</th>
+                    <th className="kinder">Teilgenommen</th>
+                </tr>
+                </thead>
+                <tbody>
+                {verlauf.map((eintrag, index) => (
+                    <tr key={index}>
+                      <td className="datum">{eintrag.datum}</td>
+                      <td className="kinder">{eintrag.kinder}</td>
+                    </tr>
+                    ))}
+                </tbody>
+            </table>)}
         </div>
     </div>
 );

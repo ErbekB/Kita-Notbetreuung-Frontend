@@ -226,8 +226,6 @@ function Admin() {
                     </button>
                 </div>
             </div>
-
-
         </div>
     );
 }

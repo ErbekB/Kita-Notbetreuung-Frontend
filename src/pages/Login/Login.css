@@ -1,65 +1,58 @@
-.Login-Body {
+.login-body {
     font-family: 'Arial', sans-serif;
     background-color: #f0f2f5;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 93vh;
+}
+
+.login-container {
+    position: relative;
+    background-color: white;
+    max-width: 1300px;
+    width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-logo {
+    display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    margin-bottom: 20px;
 }
 
-.Login-Container {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: space-around; /* Platzieren der Inhalte in der Mitte */
-    padding: 20px; /* Hier kannst du den Abstand anpassen */
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 50%; /* Anpassen der Breite des Login-Bereichs */
-}
-
-.KitaImage {
-    max-width: 300px; /* Ändere die Breite entsprechend deiner Anforderungen */
-}
-
-.KitaTitle {
-    font-weight: bold;
-    color: #1877f2;
-    font-size: 36px;
-    margin-bottom: 10px;
+.login-title {
+    color: #1778F2;
     text-align: center;
+    margin-bottom: 0;
 }
 
-.KitaDescription {
-    font-size: 20px;
-    color: #1c1e21;
-    text-align: center;
+.login-section {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    margin-top: 0;
 }
 
-.Login {
-    width: 50%; /* Anpassen der Breite des Login-Bereichs */
-}
-
-.Benutzername label,
-.Passwort label {
-    color: #1c1e21; /* Farbe für Label wie Facebook-Text */
-
-}
-
-.Benutzername input[type="text"],
-.Passwort input[type="password"] {
+.login-container input[type="text"],
+.login-container input[type="password"],
+.login-container input[type="number"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
     font-size: 16px;
+    margin-bottom: 10px;
 }
 
-.Anmeldeknopf {
+.login-container button {
     width: 100%;
     padding: 10px;
     background-color: #1877f2;
@@ -68,13 +61,29 @@
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
-.Anmeldeknopf:hover {
+.login-container button:hover {
     background-color: #166fe5;
 }
 
-.error {
-    color: #f00;
-    margin-top: 10px;
+.login-container div {
+    font-size: 16px;
+    color: #1c1e21;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.login-container .title2 {
+    font-weight: bold;
+    color: #1877f2;
+    font-size: 36px;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    text-align: center;
+}
+
+.login-form {
+    max-width: 60%;
 }
