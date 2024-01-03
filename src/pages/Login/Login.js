@@ -33,56 +33,38 @@ function Login({istEingeloggt, setIstEingeloggt}) {
     };
 
     return (
-        <div className="Login-Body">
-            <div className="Login-Container">
-                <div className="Logo">
-                    <img src={KitaImage} alt="Kita-Bild" className="KitaImage"/>
-                </div>
-                <div className="KitaTitle">
-                    Kita-Notbetreuung
-                </div>
-                <div className="KitaDescription">
-                    Mit Kita-Notbetreuung bist du und dein Kind auf der sicheren Seite.
-                    <br/>Worauf wartest du noch?
-                    <br/>Organisier deine Notbetreuung kinderleicht!
-                </div>
-                <br/>
-                <br/>
-                <div className="Login">
-                    <form onSubmit={handleLogin}>
-                        <div className="Benutzername">
-                            <label>
-                                <input
-                                    type="text"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
-                                    placeholder="Benutzername"
-                                    required
-                                />
-                            </label>
-                        </div>
-                        <br/>
-                        <div className="Passwort">
-                            <label>
-                                <input
-                                    type="password"
-                                    value={passwort}
-                                    onChange={(e) => setPasswort(e.target.value)}
-                                    placeholder="Passwort"
-                                    required
-                                />
-                            </label>
-                        </div>
-                        <br/>
-                        <button className="Anmeldeknopf" type="submit">Anmelden</button>
-                        {loginError && <p className="error">{loginError}</p>}
-                        <div>
-                            <br/>
-                            Noch kein Benutzer? Hier geht es zur <Link to="/registrieren">Registrierung</Link>.
-                        </div>
-                    </form>
+        <div className="login-body">
+            <div className="login-container">
+                <form className="login-form" onSubmit={handleLogin}>
+                    <div className="login-logo">
+                        <img src={KitaImage} alt="Kita-Bild" className="kitaImage"/>
+                    </div>
+                    <h1 className="login-title">Anmelden</h1>
                     <br/>
-                </div>
+                    <div className="login-section">
+                        <input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            placeholder="Benutzername"
+                            required
+                        />
+                        <br/>
+                        <input
+                            type="password"
+                            value={passwort}
+                            onChange={(e) => setPasswort(e.target.value)}
+                            placeholder="Passwort"
+                            required
+                        />
+                        <br/>
+                        <button type="submit">Anmelden</button>
+                        {loginError && <p className="error">{loginError}</p>}
+                    </div>
+                </form>
+                <p>
+                    Noch kein Benutzer? Hier geht es zur <Link to="/registrieren">Registrierung</Link>.
+                </p>
             </div>
         </div>
     );
