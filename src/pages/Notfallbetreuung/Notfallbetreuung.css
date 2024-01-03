@@ -24,16 +24,8 @@
 .kindergruppe-title {
     font-weight: bold;
     color: #1877f2;
-    font-size: 36px;
     margin-bottom: 10px;
     text-align: center;
-}
-
-.kindergruppe-section {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 5px;
 }
 
 .kindergruppe-section-title {

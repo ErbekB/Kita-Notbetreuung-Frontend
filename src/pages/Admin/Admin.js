@@ -166,7 +166,6 @@ function Admin() {
             <div className="admin-container">
                 <div className="admin-section">
                     <h1 className="admin-title">Eltern und ihre Kinder</h1>
-                    <br/>
                     <table>
                         <thead>
                         <tr>
