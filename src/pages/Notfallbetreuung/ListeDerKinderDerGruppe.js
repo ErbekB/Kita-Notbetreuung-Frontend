@@ -8,19 +8,22 @@ function ListeDerKinderDerGruppe() {
     const [status, setStatus] = useState(false)
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:8080/notfall', {withCredentials: true});
-                setUserId(response.data.userId);
-                setData(response.data.kinder);
-                console.log(response.data.statusNotbetreuung)
-                setStatus(response.data.statusNotbetreuung)
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
         fetchData();
     }, []);
+
+    function fetchData() {
+        axios.get('http://localhost:8080/notfall', {withCredentials: true})
+            .then((response) => {
+                setUserId(response.data.userId);
+                setData(response.data.kinder);
+                setStatus(response.data.statusNotbetreuung);
+
+            })
+            .catch((error) => {
+                alert(error);
+            });
+    }
+
 
     function notbetreuungTeilnehmen(kindId) {
         axios.post(`http://localhost:8080/notfall/${kindId}`, {}, {withCredentials: true})
@@ -157,6 +160,7 @@ function ListeDerKinderDerGruppe() {
                     </div>
                 </div>
             }
+
         </div>)
 }
 
