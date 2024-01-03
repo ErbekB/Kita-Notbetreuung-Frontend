@@ -92,7 +92,7 @@ function ListeDerKinderDerGruppe() {
                                         <td className="teilnahmen">{kind.counter}</td>
                                         <td className="aktion">
                                             <button className="button button-danger"
-                                                    onClick={() => nichtTeilnehmen(kind.id)}>Teilnahme zurückziehen
+                                                    onClick={() => teilnahmeAusschliessen(kind.id)}>Teilnahme zurückziehen
                                             </button>
                                         </td>
                                     </tr>

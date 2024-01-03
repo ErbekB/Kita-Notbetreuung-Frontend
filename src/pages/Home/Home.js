@@ -9,21 +9,19 @@ function Home() {
 
 
     useEffect(() => {
-        fetchData();
-    }, []);
-
-    function fetchData() {
-        axios.get('http://localhost:8080/index', {withCredentials: true})
-            .then((response) => {
+        async function fetchData() {
+            try {
+                const response = await axios.get('http://localhost:8080/index', {withCredentials: true});
                 setData(response.data.kindList);
                 setAdmin(response.data.admin);
                 setNotbetreuung(response.data.notbetreuung);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
 
-            })
-            .catch((error) => {
-                alert('Fehler beim Abrufen der Eltern');
-            });
-    }
+        fetchData();
+    }, []);
 
 const toggleNotbetreuung = async () => {
     try {
