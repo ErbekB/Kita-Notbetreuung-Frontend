@@ -56,6 +56,7 @@ function ProfilBearbeiten() {
             <div className="profil-container">
                 <h1 className="profil-title">Profil verwalten</h1>
                 <h2 className="profil-title">Benutzername ändern</h2>
+                <br/>
                 <form onSubmit={neuenNamenUebernehmen}>
                     <input type="name"
                            value={name}
@@ -73,6 +74,7 @@ function ProfilBearbeiten() {
                 <br/>
                 <br/>
                 <h2 className="profil-title">Passwort ändern</h2>
+                <br/>
                 <form onSubmit={neuesPasswortUebernehmen}>
                     <input type="password"
                            value={passwort}
@@ -89,6 +91,7 @@ function ProfilBearbeiten() {
             </div>
             <div className="profil-container">
             <h2 className="profil-title">Benutzer löschen</h2>
+                <br/>
                 <button className="button button-danger" onClick={benutzerLoeschen}>Benutzer löschen</button>
             </div>
         </div>

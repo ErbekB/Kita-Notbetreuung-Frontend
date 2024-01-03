@@ -62,15 +62,13 @@ function Register({istEingeloggt}) {
     return (
         <div className="register-body">
             <div className="register-container">
-                <form onSubmit={registrieren}>
-                    <div className="Logo">
-                        <img src={KitaImage} alt="Kita-Bild" className="KitaImage"/>
+                <form className="register-form" onSubmit={registrieren}>
+                    <div className="register-logo">
+                        <img src={KitaImage} alt="Kita-Bild" className="kitaImage"/>
                     </div>
-                    <div className="title1">
-                        Registrieren
-                    </div>
+                    <h1 className="register-title">Registrieren</h1>
                     <br/>
-                    <div>
+                    <div className="register-section">
                         <input
                             type="text"
                             value={kita}
@@ -78,9 +76,6 @@ function Register({istEingeloggt}) {
                             placeholder="Kita"
                             required
                         />
-                    </div>
-                    <br/>
-                    <div>
                         <input
                             type="number"
                             value={postleitzahl}
@@ -88,9 +83,7 @@ function Register({istEingeloggt}) {
                             placeholder="Postleitzahl"
                             required
                         />
-                    </div>
-                    <br/>
-                    <div>
+                        <br/>
                         <input
                             type="text"
                             value={kitaGruppe}
@@ -98,9 +91,6 @@ function Register({istEingeloggt}) {
                             placeholder="Kitagruppe"
                             required
                         />
-                    </div>
-                    <br/>
-                    <div>
                         <input
                             type="text"
                             value={name}
@@ -108,9 +98,6 @@ function Register({istEingeloggt}) {
                             placeholder="Benutzername"
                             required
                         />
-                    </div>
-                    <br/>
-                    <div>
                         <input
                             type="password"
                             value={passwort}
@@ -118,42 +105,34 @@ function Register({istEingeloggt}) {
                             placeholder="Passwort"
                             required
                         />
-                    </div>
-                    <br/>
-                    <button type="submit">Registrieren</button>
-                    {registerError && <p className="error">{registerError}</p>}
-                    <div>
-                        <br/>
-                        Zurück zum <Link to="/login">Login</Link>.
+                        <button type="submit">Registrieren</button>
+                        {registerError && <p className="error">{registerError}</p>}
                     </div>
                 </form>
+                <p>
+                    Zurück zum <Link to="/login">Login</Link>.
+                </p>
             </div>
-            <br/>
+
             <div className="register-container">
-                    <div className="title2">
-                        Bedienungsanleitung
-                    </div>
-                    <div className="Schritte">
-                        <div>
-                            1. Sprich dich mit deiner Kitagruppe ab.
-                        </div>
-                        <br/>
-                        <div>
-                            2. Registriere dich und erstelle die Kitagruppe.
-                        </div>
-                        <br/>
-                        <div>
-                            3. Du bist jetzt der Admin der Kitagruppe
-                        </div>
-                        <br/>
-                        <div>
-                            4. Lade nun alle Eltern der Kitagruppe ein.
-                        </div>
-                        <br/>
-                        <div>
-                            5. Meldet euch mit den Namen eurer Kinder an.
-                        </div>
-                    </div>
+                <h1 className="register-title">Bedienungsanleitung</h1>
+                <div className="Schritte">
+                    <br/>
+                    <br/>
+                    1. Sprich dich mit deiner Kitagruppe ab.
+                    <br/>
+                    <br/>
+                    2. Registriere dich und erstelle die Kitagruppe.
+                    <br/>
+                    <br/>
+                    3. Du bist jetzt der Admin der Kitagruppe
+                    <br/>
+                    <br/>
+                    4. Lade nun alle Eltern der Kitagruppe ein.
+                    <br/>
+                    <br/>
+                    5. Meldet euch mit den Namen eurer Kinder an.
+                </div>
             </div>
         </div>
     );
