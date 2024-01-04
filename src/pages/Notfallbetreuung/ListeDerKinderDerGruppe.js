@@ -7,6 +7,7 @@ function ListeDerKinderDerGruppe() {
     const [userId, setUserId] = useState(0);
     const [status, setStatus] = useState(false)
     const [abstimmungAbgeschlossen, setAbstimmungAbgeschlossen] = useState(false);
+    const [admin, setAdmin] = useState(false)
 
 
     useEffect(() => {
@@ -23,6 +24,7 @@ function ListeDerKinderDerGruppe() {
                 }
                 setUserId(response.data.userId);
                 setStatus(response.data.statusNotbetreuung);
+                setAdmin(response.data.admin);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -118,11 +120,9 @@ function ListeDerKinderDerGruppe() {
                             <div className="kindergruppe-body">
                                 <div className="kindergruppe-container">
                                     <h1 className="kindergruppe-title">Notbetreuung</h1>
-
-
                                     <div className="kindergruppe-section">
                                         <div>
-                                            {!abstimmungAbgeschlossen && (
+                                            {!abstimmungAbgeschlossen && admin &&  (
                                                 <button onClick={buttonVereinen}>Abstimmung für Notbetreuung
                                                     abschließen</button>
                                             )}
@@ -132,7 +132,7 @@ function ListeDerKinderDerGruppe() {
                                                     abgeschlossen.</div>
                                             )}
                                         </div>
-                                        <h2 className="kindergruppe-section-title">An Notbetreuung teilnehmend:</h2>
+                                        <h2 className="kindergruppe-section-title">An Notbetreuung teilnehmend  {teilnehmendeKinder.length}/5:</h2>
                                         <table className="kindergruppe-table">
                                             <thead>
                                             {teilnehmendeKinder.length > 0 && (
@@ -149,7 +149,7 @@ function ListeDerKinderDerGruppe() {
                                                     <td className="kind">{kind.vorname} {kind.nachname}</td>
                                                     <td className="teilnahmen">{kind.counter}</td>
                                                     <td className="aktion">
-                                                        {!abstimmungAbgeschlossen && (
+                                                        {!abstimmungAbgeschlossen && userId === kind.elternId && (
                                                             <button className="button button-danger"
                                                                     onClick={() => teilnahmeAusschliessen(kind.id)}>Teilnahme
                                                                 zurückziehen
