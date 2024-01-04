@@ -71,7 +71,7 @@ function Header() {
                         {daten.admin && (
                             <Link to="/Admin">
                                 <button className={`navItem ${aktivesMenue === "admin" ? "active" : ""}`}
-                                        onClick={() => setAktivesMenue("admin")} data-label="Admin">
+                                        onClick={() => setAktivesMenue("admin")} data-label="Admin-Panel">
                                     <i className="fas fa-user-cog"></i>
                                 </button>
                             </Link>

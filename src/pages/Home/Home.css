@@ -66,3 +66,50 @@ table td {
 .datum {
     cursor: pointer;
 }
+
+.anleitung-text {
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.anleitung-text h3 {
+    color: #1778F2;
+    margin-bottom: 15px;
+}
+
+.anleitung-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    background-color: #e7eff8;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.anleitung-text ol {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    list-style-position: inside;
+}
+
+.anleitung-text ol li {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+.anleitung-text strong {
+    color: #1778F2;
+}
+
+.anleitung-text .hinweis {
+    color: #d9534f;
+    font-style: italic;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f2dede;
+    border-radius: 4px;
+}
+
