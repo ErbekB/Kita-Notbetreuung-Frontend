@@ -123,7 +123,7 @@ function ListeDerKinderDerGruppe() {
                                     <div className="kindergruppe-section">
                                         <div>
                                             {!abstimmungAbgeschlossen && (
-                                                <button onClick={abstimmungAbschließen}>Abstimmung für Notbetreuung
+                                                <button onClick={buttonVereinen}>Abstimmung für Notbetreuung
                                                     abschließen</button>
                                             )}
 
@@ -133,7 +133,6 @@ function ListeDerKinderDerGruppe() {
                                             )}
                                         </div>
                                         <h2 className="kindergruppe-section-title">An Notbetreuung teilnehmend:</h2>
-                                        <button onClick={verlaufSpeichern}>Notbetreuung festlegen</button>
                                         <table className="kindergruppe-table">
                                             <thead>
                                             {teilnehmendeKinder.length > 0 && (
