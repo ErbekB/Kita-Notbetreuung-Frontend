@@ -95,7 +95,13 @@ function ListeDerKinderDerGruppe() {
             console.error('Fehler speichern des Verlaufs', error);
         }
     };
-
+    const buttonVereinen =  () =>{
+        const bestaetigen = window.confirm("Bitte bestätige den Abschluss der Abstimmung. Eine Änderung ist danach nicht mehr möglich");
+        if (bestaetigen){
+        abstimmungAbschließen()
+        verlaufSpeichern()
+    }
+    }
 
     return (
         <div>{status === true && (
@@ -106,7 +112,7 @@ function ListeDerKinderDerGruppe() {
                         <div className="kindergruppe-section">
                             <div>
                                 {!abstimmungAbgeschlossen && (
-                                    <button onClick={abstimmungAbschließen}>Abstimmung für Notbetreuung
+                                    <button className="abstimmungsbutton" onClick={buttonVereinen}>Abstimmung für Notbetreuung
                                         abschließen</button>
                                 )}
 
@@ -115,7 +121,7 @@ function ListeDerKinderDerGruppe() {
                                 )}
                             </div>
                             <h2 className="kindergruppe-section-title">An Notbetreuung teilnehmend:</h2>
-                            <button onClick={verlaufSpeichern}>Notbetreuung festlegen</button>
+
                             <table className="kindergruppe-table">
                                 <thead>
                                 {teilnehmendeKinder.length > 0 && (
@@ -151,7 +157,9 @@ function ListeDerKinderDerGruppe() {
                                 </tbody>
                             </table>
                         </div>
-
+                        <br/>
+                        <br/>
+                        <br/>
                         <div className="kindergruppe-section">
                             <h2 className="kindergruppe-section-title">Kinder der Gruppe:</h2>
                             <table className="kindergruppe-table">
