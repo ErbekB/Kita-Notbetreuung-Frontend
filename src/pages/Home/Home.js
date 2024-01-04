@@ -89,6 +89,7 @@ function Home() {
                     </tbody>
                 </table>
                 <br/>
+                {verlauf.length > 0 &&
                 <table>
                     <thead>
                     <tr>
@@ -99,14 +100,14 @@ function Home() {
                     {verlauf.map((eintrag) => (
                         <tr>
                             <td>
-                                <span className="datum" onClick={aufklappen}>{eintrag.datum}</span>
+                                <span  className="datum" onClick={aufklappen}>{eintrag.datum}</span>
                                 {anzeigen && <span>{eintrag.kinder.map((kind) => (
                                     <p>{kind.vorname} {kind.nachname}</p>))}</span>}
                             </td>
                         </tr>
                     ))}
                     </tbody>
-                </table>
+                </table>}
             </div>
         </div>
     );
