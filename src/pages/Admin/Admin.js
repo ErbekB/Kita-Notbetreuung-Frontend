@@ -112,7 +112,7 @@ function Admin() {
     return (
         <div className="admin-body">
             <div className="admin-container">
-                <h1 className="admin-title">Admin-Seite</h1>
+                <h1 className="admin-title">Admin-Panel</h1>
                 <div className="admin-section">
                     <h2>Elternteil hinzufügen</h2>
                     <input

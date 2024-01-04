@@ -115,25 +115,20 @@ function Register({istEingeloggt}) {
             </div>
 
             <div className="register-container">
-                <h1 className="register-title">Bedienungsanleitung</h1>
-                <div className="Schritte">
-                    <br/>
-                    <br/>
-                    1. Sprich dich mit deiner Kitagruppe ab.
-                    <br/>
-                    <br/>
-                    2. Registriere dich und erstelle die Kitagruppe.
-                    <br/>
-                    <br/>
-                    3. Du bist jetzt der Admin der Kitagruppe
-                    <br/>
-                    <br/>
-                    4. Lade nun alle Eltern der Kitagruppe ein.
-                    <br/>
-                    <br/>
-                    5. Meldet euch mit den Namen eurer Kinder an.
+                <h1 className="register-title">Bedienungsanleitung zur Registrierung</h1>
+                <div className="anleitung-text">
+                    <p>Um mit der Nutzung der Plattform zu beginnen, muss ein Administrator der Kitagruppe registriert werden. Befolgen Sie diese Schritte, um die Registrierung und Einrichtung durchzuführen:</p>
+                    <ol>
+                        <li><strong>Abstimmung:</strong> Stimmen Sie sich mit den anderen Eltern Ihrer Kitagruppe ab, um einen Administrator festzulegen.</li>
+                        <li><strong>Registrierung des Administrators:</strong> Der ausgewählte Administrator registriert sich und erstellt dabei die Kitagruppe auf der Plattform.</li>
+                        <li><strong>Admin-Rechte:</strong> Nach erfolgreicher Registrierung und Erstellung der Kitagruppe besitzt der Administrator Verwaltungsrechte für die Gruppe.</li>
+                        <li><strong>Einladen der Eltern:</strong> Der Administrator lädt anschließend alle Eltern der Kitagruppe zur Plattform ein.</li>
+                        <li><strong>Anmeldung der Eltern:</strong> Die Eltern melden sich mit den Namen ihrer Kinder auf der Plattform an und werden Teil der Kitagruppe.</li>
+                    </ol>
+                    <p>Es ist wichtig, dass dieser Prozess sorgfältig durchgeführt wird, da der Administrator zentrale Funktionen und Verwaltungsaufgaben übernimmt.</p>
                 </div>
             </div>
+
         </div>
     );
 }
