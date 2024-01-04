@@ -89,6 +89,7 @@ function Home() {
                     </tbody>
                 </table>
                 <br/>
+                {verlauf.length > 0 &&
                 <table>
                     <thead>
                     <tr>
@@ -106,7 +107,7 @@ function Home() {
                         </tr>
                     ))}
                     </tbody>
-                </table>
+                </table>}
             </div>
         </div>
     );

@@ -62,3 +62,7 @@ table td {
     padding: 8px;
     text-align: center;
 }
+
+.datum {
+    cursor: pointer;
+}
