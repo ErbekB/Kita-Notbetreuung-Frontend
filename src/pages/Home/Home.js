@@ -63,7 +63,7 @@ function Home() {
                 {data.length > 0 ? (
                     <>
                         <h2 className={notbetreuung ? "notbetreuung-anzeige red-text" : "notbetreuung-anzeige standard-text"}>
-                            {notbetreuung ? "Morgen ist Notbetreuung" : "Keine Notbetreuung"}
+                            {notbetreuung ? "Heute findet die Notbetreuung statt" : "Keine Notbetreuung"}
                         </h2>
                         {admin ? <button onClick={toggleNotbetreuung}>Notbetreuung umschalten</button> : ''}
                         <br/>
