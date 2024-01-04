@@ -100,7 +100,7 @@ function Home() {
                     {verlauf.map((eintrag) => (
                         <tr>
                             <td>
-                                <span className="datum" onClick={aufklappen}>{eintrag.datum}</span>
+                                <span  className="datum" onClick={aufklappen}>{eintrag.datum}</span>
                                 {anzeigen && <span>{eintrag.kinder.map((kind) => (
                                     <p>{kind.vorname} {kind.nachname}</p>))}</span>}
                             </td>
