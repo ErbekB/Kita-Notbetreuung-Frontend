@@ -171,7 +171,7 @@ function Admin() {
                         <tr>
                             <th>Elternteil</th>
                             <th>Kind</th>
-                            <th>Counter</th>
+                            <th>Teilnahme/n</th>
                             <th></th>
                             <th>Aktionen</th>
                         </tr>
@@ -222,7 +222,7 @@ function Admin() {
                         </tbody>
                     </table>
                     <button className="button button-reset-all" onClick={counterAllerKinderZuruecksetzen}>
-                        Counter aller Kinder zurücksetzen
+                       Teilnahmen zurücksetzen
                     </button>
                 </div>
             </div>

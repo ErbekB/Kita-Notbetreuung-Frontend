@@ -123,7 +123,7 @@ function ListeDerKinderDerGruppe() {
                                     <div className="kindergruppe-section">
                                         <div>
                                             {!abstimmungAbgeschlossen && admin &&  (
-                                                <button onClick={buttonVereinen}>Abstimmung für Notbetreuung
+                                                <button className={"abstimmungsbutton"} onClick={buttonVereinen}>Abstimmung für Notbetreuung
                                                     abschließen</button>
                                             )}
 
@@ -132,7 +132,7 @@ function ListeDerKinderDerGruppe() {
                                                     abgeschlossen.</div>
                                             )}
                                         </div>
-                                        <h2 className="kindergruppe-section-title">An Notbetreuung teilnehmend  {teilnehmendeKinder.length}/5:</h2>
+                                        <h2 className="kindergruppe-section-title">An Notbetreuung teilnehmend  {teilnehmendeKinder.length}/5</h2>
                                         <table className="kindergruppe-table">
                                             <thead>
                                             {teilnehmendeKinder.length > 0 && (
@@ -171,7 +171,7 @@ function ListeDerKinderDerGruppe() {
                                     </div>
 
                                     <div className="kindergruppe-section">
-                                        <h2 className="kindergruppe-section-title">Kinder der Gruppe:</h2>
+                                        <h2 className="kindergruppe-section-title">Die Kitagruppe</h2>
                                         <table className="kindergruppe-table">
                                             <thead>
                                             {nichtTeilnehmendeKinder.length > 0 && (

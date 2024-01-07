@@ -55,7 +55,7 @@ function ProfilBearbeiten() {
         <div className="profil-body">
             <div className="profil-container">
                 <h1 className="profil-title">Profil verwalten</h1>
-                <h2 className="profil-title">Benutzername ändern</h2>
+                <h2 className="profil-title2">Benutzername ändern</h2>
                 <br/>
                 <form onSubmit={neuenNamenUebernehmen}>
                     <input type="name"
@@ -68,12 +68,12 @@ function ProfilBearbeiten() {
                            onChange={(e) => setNameBestaetigen(e.target.value)}
                            placeholder="Neuen Benutzernamen bestätigen"
                     />
-                    <button type="submit">bestätigen</button>
+                    <button type="submit">Bestätigen</button>
                 </form>
                 <br/>
                 <br/>
                 <br/>
-                <h2 className="profil-title">Passwort ändern</h2>
+                <h2 className="profil-title2">Passwort ändern</h2>
                 <br/>
                 <form onSubmit={neuesPasswortUebernehmen}>
                     <input type="password"
@@ -86,7 +86,7 @@ function ProfilBearbeiten() {
                            onChange={(e) => setPasswortBestaetigen(e.target.value)}
                            placeholder="Neues Passwort bestätigen"
                     />
-                    <button type="submit">bestätigen</button>
+                    <button type="submit">Bestätigen</button>
                 </form>
             </div>
             <div className="profil-container">
