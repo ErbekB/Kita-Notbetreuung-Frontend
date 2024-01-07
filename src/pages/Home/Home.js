@@ -90,6 +90,7 @@ function Home() {
                             ))}
                             </tbody>
                         </table>
+                        <h2 className="table-title">Historie</h2>
                     </>
                 ) : (
                     <div className="anleitung-text">
@@ -108,7 +109,6 @@ function Home() {
 
                 )}
                 <br/>
-                <h2 className="table-title">Historie</h2>
                 {verlauf && verlauf.length > 0 &&
                     <table>
                         <thead>
