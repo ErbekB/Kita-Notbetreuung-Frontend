@@ -5,7 +5,7 @@ function Footer() {
     return (
         <div className="footer-container">
             <footer>
-                <p>"Effizient, Effektiv, Essentiell - Kita-Notbetreuung"</p>
+                <p>einfach, übersichtlich, fair  - Kita-Notbetreuung</p>
             </footer>
         </div>
     );

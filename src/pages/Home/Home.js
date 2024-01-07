@@ -65,8 +65,9 @@ function Home() {
                         <h2 className={notbetreuung ? "notbetreuung-anzeige red-text" : "notbetreuung-anzeige standard-text"}>
                             {notbetreuung ? "Heute findet die Notbetreuung statt" : "Keine Notbetreuung"}
                         </h2>
-                        {admin ? <button onClick={toggleNotbetreuung}>Notbetreuung umschalten</button> : ''}
+                        {admin ? <button className="notbetreuung-button" onClick={toggleNotbetreuung}>Notbetreuung an/ausschalten</button> : ''}
                         <br/>
+                        <h2 className="table-title">Die Kitagruppe</h2>
                         <table className="kindergruppe-table">
                             <thead>
                             <tr>
@@ -106,13 +107,13 @@ function Home() {
                     </div>
 
                 )}
-
                 <br/>
+                <h2 className="table-title">Historie</h2>
                 {verlauf && verlauf.length > 0 &&
                     <table>
                         <thead>
                         <tr>
-                            <th className="historie">Historie</th>
+                            <th className="Datum">Datum</th>
                         </tr>
                         </thead>
                         <tbody>

@@ -29,8 +29,9 @@
 }
 
 .kindergruppe-section-title {
-    color: #1778F2;
+    color: black;
     margin-bottom: 10px;
+    margin-top: 40px;
 }
 
 .kindergruppe-table {
@@ -89,7 +90,13 @@
 }
 
 .abstimmungsbutton {
-    font-size: medium;
-    margin-top:0.8em;
+    padding: 10px 20px; /* Vergrößert den Knopf */
+    font-size: 16px; /* Größere Schrift */
+    margin-bottom: 30px;
+    cursor: pointer; /* Cursor-Stil als Hinweis für Klickbarkeit */
+}
+
+.table-title {
+    margin-bottom: 0;
 }
 

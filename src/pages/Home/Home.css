@@ -112,4 +112,20 @@ table td {
     background-color: #f2dede;
     border-radius: 4px;
 }
+.notbetreuung-button {
+    padding: 10px 20px; /* Vergrößert den Knopf */
+    font-size: 16px; /* Größere Schrift */
+    margin-bottom: 30px;
+    cursor: pointer; /* Cursor-Stil als Hinweis für Klickbarkeit */
+}
+
+.notbetreuung-anzeige {
+    margin-bottom: 20px; /* Vergrößert den Abstand nach unten */
+}
+
+
+
+
+
+
 

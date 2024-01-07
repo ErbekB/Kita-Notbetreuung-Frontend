@@ -16,10 +16,14 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.profil-title {
+.profil-title, .profil-title2 {
     color: #1778F2;
     text-align: center;
     margin-bottom: 0;
+}
+
+.profil-title2{
+    color: black;
 }
 
 input[type="name"],
